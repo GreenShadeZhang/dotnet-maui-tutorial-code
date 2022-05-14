@@ -22,14 +22,14 @@
                 BackgroundColor="Transparent"
                 ItemsSource="{Binding Infos}"
                 SelectionMode="None">
-                <CollectionView.EmptyView>
+                <!--<CollectionView.EmptyView>
                     <StackLayout Padding="100">
                         <Image
                             HorizontalOptions="CenterAndExpand"
                             Source="nodata.png"
                             VerticalOptions="CenterAndExpand" />
                     </StackLayout>
-                </CollectionView.EmptyView>
+                </CollectionView.EmptyView>-->
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
