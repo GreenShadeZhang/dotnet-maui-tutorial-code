@@ -7,7 +7,12 @@
     xmlns:controls="clr-namespace:AnalogClock.Controls">
     <ContentPage.Content>
         <Grid>
+         
             <controls:Clock2 />
+                  <Label Padding="0,120,0,0" TextColor="White" FontSize="48"
+                    HorizontalOptions="Center"
+               VerticalOptions="Center" Text="你好，世界！🐷"/>
         </Grid>
+
     </ContentPage.Content>
 </ContentPage>

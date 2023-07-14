@@ -28,7 +28,7 @@ public partial class MainPage : ContentPage
 
     private async void MainPage_OnLoaded(object sender, EventArgs e)
     {
-        await TextToSpeech.SpeakAsync("你好世界");
+        //await TextToSpeech.SpeakAsync("你好世界");
         connection.On<MsgModel>("ReceiveMessage", async (msgModel) =>
         {
             if (msgModel != null)
