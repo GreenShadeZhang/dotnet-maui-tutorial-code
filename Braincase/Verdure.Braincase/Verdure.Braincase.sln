@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verdure.Braincase", "Verdure.Braincase\Verdure.Braincase.csproj", "{2AEBFD49-27BB-4414-8A96-BC2CC9E0A99C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdure.Braincase.Api", "Verdure.Braincase.Api\Verdure.Braincase.Api.csproj", "{A7B3CA5D-45F3-42A2-A40F-C545FF32BE6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdure.Common", "Verdure.Common\Verdure.Common.csproj", "{A14857C0-5134-423A-8B8D-AAC80E410F99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{2AEBFD49-27BB-4414-8A96-BC2CC9E0A99C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AEBFD49-27BB-4414-8A96-BC2CC9E0A99C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AEBFD49-27BB-4414-8A96-BC2CC9E0A99C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A7B3CA5D-45F3-42A2-A40F-C545FF32BE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B3CA5D-45F3-42A2-A40F-C545FF32BE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B3CA5D-45F3-42A2-A40F-C545FF32BE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B3CA5D-45F3-42A2-A40F-C545FF32BE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14857C0-5134-423A-8B8D-AAC80E410F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14857C0-5134-423A-8B8D-AAC80E410F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14857C0-5134-423A-8B8D-AAC80E410F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14857C0-5134-423A-8B8D-AAC80E410F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
