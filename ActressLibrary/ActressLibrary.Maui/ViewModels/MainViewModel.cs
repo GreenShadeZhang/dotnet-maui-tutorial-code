@@ -19,7 +19,7 @@ namespace ActressLibrary.Maui.ViewModels
         [ObservableProperty]
         bool isRefreshing;
 
-        [ICommand]
+        [CommunityToolkit.Mvvm.Input.RelayCommand]
         async Task LoadActorsAsync()
         {
             if (IsBusy)

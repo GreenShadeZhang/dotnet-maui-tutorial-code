@@ -38,7 +38,7 @@ namespace ActressLibrary.Maui.ViewModels
 
         public async Task InitializeAsync()
         {
-            var ret = await _repository.GetAsync(person.Name);
+            var ret = await _repository.GetAsync(Person.Name);
 
             if (ret != null)
             {
