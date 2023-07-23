@@ -13,5 +13,11 @@ namespace Verdure.Common
         public string Content { get; set; } = string.Empty;
 
         public string TtsText { get; set; } = string.Empty;
+
+        public string ClockName { get; set; } = string.Empty;
+
+        public int FontColorR { get; set; }
+        public int FontColorG { get; set; }
+        public int FontColorB { get; set; }
     }
 }
