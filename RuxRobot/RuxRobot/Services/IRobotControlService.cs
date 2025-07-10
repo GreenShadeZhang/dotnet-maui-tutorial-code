@@ -203,14 +203,16 @@ public static class RobotActionCommands
 /// </summary>
 public static class RobotColors
 {
-    public const int Red = 0xFF0000;
-    public const int Green = 0x00FF00;
-    public const int Blue = 0x0000FF;
-    public const int Yellow = 0xFFFF00;
-    public const int Purple = 0xFF00FF;
-    public const int Cyan = 0x00FFFF;
-    public const int White = 0xFFFFFF;
-    public const int Off = 0x000000;
+    public const int Red = 1;
+    public const int Green = 2;
+    public const int Blue = 3;
+    public const int Orange = 4;
+    public const int White = 5;
+    public const int Yellow = 6;
+    public const int Purple = 7;
+    public const int Cyan = 8;
+    public const int Black = 9;
+    public const int Off = 9;
 }
 
 /// <summary>
