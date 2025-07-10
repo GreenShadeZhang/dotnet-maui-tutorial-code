@@ -246,31 +246,31 @@ public class AndroidRobotControlService : IRobotControlService
     #endregion
 
     #region 动作控制
-    public async Task MoveForwardAsync(int speed = 50, int steps = 1)
+    public async Task MoveForwardAsync(int speed = 3, int steps = 3)
     {
         _logger.LogInformation($"请求前进动作: 编号={RobotActionCommands.MoveForward}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.MoveForward, speed, steps);
     }
 
-    public async Task MoveBackwardAsync(int speed = 50, int steps = 1)
+    public async Task MoveBackwardAsync(int speed = 3, int steps = 3)
     {
         _logger.LogInformation($"请求后退动作: 编号={RobotActionCommands.WalkBackward}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.WalkBackward, speed, steps);
     }
 
-    public async Task TurnLeftAsync(int speed = 50, int steps = 1)
+    public async Task TurnLeftAsync(int speed = 3, int steps = 3)
     {
         _logger.LogInformation($"请求左转动作: 编号={RobotActionCommands.TurnLeft}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.TurnLeft, speed, steps);
     }
 
-    public async Task TurnRightAsync(int speed = 50, int steps = 1)
+    public async Task TurnRightAsync(int speed = 3, int steps = 3)
     {
         _logger.LogInformation($"请求右转动作: 编号={RobotActionCommands.TurnRight}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.TurnRight, speed, steps);
     }
 
-    public async Task PerformActionAsync(int actionNumber, int speed = 50, int steps = 1)
+    public async Task PerformActionAsync(int actionNumber, int speed = 3, int steps = 3)
     {
         try
         {
@@ -289,12 +289,12 @@ public class AndroidRobotControlService : IRobotControlService
             _logger.LogInformation($"执行动作: {actionNumber}, 速度: {speed}, 步数: {steps}");
 
             // 使用正确的参数顺序！
-            // 根据参数组合测试的结果，很可能正确顺序是 Set(speed, steps, actionNumber)
+            // 根据官方SDK文档：mMessage.set(number, speed, stepNum)
             var actionMessage = new ActionMessage();
             
-            // 尝试最可能正确的参数顺序
-            _logger.LogInformation($"使用参数顺序: Set({speed}, {steps}, {actionNumber})");
-            actionMessage.Set(speed, steps, actionNumber);
+            // 正确的参数顺序：Set(actionNumber, speed, steps)
+            _logger.LogInformation($"使用参数顺序: Set({actionNumber}, {speed}, {steps})");
+            actionMessage.Set(actionNumber, speed, steps);
             _robotService.RobotActionCommand(actionMessage);
 
             // 等待动作完成 - 根据动作类型调整等待时间
@@ -629,7 +629,7 @@ public class AndroidRobotControlService : IRobotControlService
                 _logger.LogInformation($"测试动作编号: {actionNumber}");
                 
                 var actionMessage = new ActionMessage();
-                actionMessage.Set(actionNumber, 50, 1);
+                actionMessage.Set(actionNumber, 3, 1);  // 使用正确的参数顺序和默认值
                 _robotService.RobotActionCommand(actionMessage);
                 
                 // 等待观察效果
@@ -670,31 +670,31 @@ public class AndroidRobotControlService : IRobotControlService
             // 使用动作编号63，尝试不同的参数组合
             int actionNumber = 63;
             
-            // 组合1: Set(actionNumber, speed, steps)
-            _logger.LogInformation($"测试组合1: Set({actionNumber}, 50, 1)");
+            // 组合1: Set(actionNumber, speed, steps) - 正确的官方文档顺序
+            _logger.LogInformation($"测试组合1: Set({actionNumber}, 3, 1)");
             var msg1 = new ActionMessage();
-            msg1.Set(actionNumber, 50, 1);
+            msg1.Set(actionNumber, 3, 1);
             _robotService.RobotActionCommand(msg1);
             await Task.Delay(3000);
             
-            // 组合2: Set(speed, steps, actionNumber) - 根据官方示例推测
-            _logger.LogInformation($"测试组合2: Set(50, 1, {actionNumber})");
+            // 组合2: Set(speed, steps, actionNumber) - 错误的参数顺序
+            _logger.LogInformation($"测试组合2: Set(3, 1, {actionNumber})");
             var msg2 = new ActionMessage();
-            msg2.Set(50, 1, actionNumber);
+            msg2.Set(3, 1, actionNumber);
             _robotService.RobotActionCommand(msg2);
             await Task.Delay(3000);
             
-            // 组合3: Set(steps, actionNumber, speed)
-            _logger.LogInformation($"测试组合3: Set(1, {actionNumber}, 50)");
+            // 组合3: Set(steps, actionNumber, speed) - 错误的参数顺序
+            _logger.LogInformation($"测试组合3: Set(1, {actionNumber}, 3)");
             var msg3 = new ActionMessage();
-            msg3.Set(1, actionNumber, 50);
+            msg3.Set(1, actionNumber, 3);
             _robotService.RobotActionCommand(msg3);
             await Task.Delay(3000);
             
             // 组合4: 使用更高的速度值
-            _logger.LogInformation($"测试组合4: Set({actionNumber}, 100, 2)");
+            _logger.LogInformation($"测试组合4: Set({actionNumber}, 6, 2)");
             var msg4 = new ActionMessage();
-            msg4.Set(actionNumber, 100, 2);
+            msg4.Set(actionNumber, 6, 2);
             _robotService.RobotActionCommand(msg4);
             await Task.Delay(3000);
             

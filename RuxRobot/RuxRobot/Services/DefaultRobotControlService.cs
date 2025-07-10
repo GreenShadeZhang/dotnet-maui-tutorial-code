@@ -58,31 +58,31 @@ public class DefaultRobotControlService : IRobotControlService
         return Task.CompletedTask;
     }
 
-    public Task MoveForwardAsync(int speed = 50, int steps = 1)
+    public Task MoveForwardAsync(int speed = 3, int steps = 1)
     {
         _logger.LogWarning("动作控制仅在Android平台可用");
         return Task.CompletedTask;
     }
 
-    public Task MoveBackwardAsync(int speed = 50, int steps = 1)
+    public Task MoveBackwardAsync(int speed = 3, int steps = 1)
     {
         _logger.LogWarning("动作控制仅在Android平台可用");
         return Task.CompletedTask;
     }
 
-    public Task TurnLeftAsync(int speed = 50, int steps = 1)
+    public Task TurnLeftAsync(int speed = 3, int steps = 1)
     {
         _logger.LogWarning("动作控制仅在Android平台可用");
         return Task.CompletedTask;
     }
 
-    public Task TurnRightAsync(int speed = 50, int steps = 1)
+    public Task TurnRightAsync(int speed = 3, int steps = 1)
     {
         _logger.LogWarning("动作控制仅在Android平台可用");
         return Task.CompletedTask;
     }
 
-    public Task PerformActionAsync(int actionNumber, int speed = 50, int steps = 1)
+    public Task PerformActionAsync(int actionNumber, int speed = 3, int steps = 1)
     {
         _logger.LogWarning("动作控制仅在Android平台可用");
         return Task.CompletedTask;

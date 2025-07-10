@@ -88,27 +88,27 @@ public interface IRobotControlService : IRobotSensorEvents
     /// <summary>
     /// 前进
     /// </summary>
-    Task MoveForwardAsync(int speed = 50, int steps = 1);
+    Task MoveForwardAsync(int speed = 3, int steps = 1);
     
     /// <summary>
     /// 后退
     /// </summary>
-    Task MoveBackwardAsync(int speed = 50, int steps = 1);
+    Task MoveBackwardAsync(int speed = 3, int steps = 1);
     
     /// <summary>
     /// 左转
     /// </summary>
-    Task TurnLeftAsync(int speed = 50, int steps = 1);
+    Task TurnLeftAsync(int speed = 3, int steps = 1);
     
     /// <summary>
     /// 右转
     /// </summary>
-    Task TurnRightAsync(int speed = 50, int steps = 1);
+    Task TurnRightAsync(int speed = 3, int steps = 1);
     
     /// <summary>
     /// 执行自定义动作
     /// </summary>
-    Task PerformActionAsync(int actionNumber, int speed = 50, int steps = 1);
+    Task PerformActionAsync(int actionNumber, int speed = 3, int steps = 1);
     
     // 天线控制
     /// <summary>
