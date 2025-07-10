@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- 圆形屏幕优化样式 -->
+    
+    <!-- 圆形按钮样式 -->
+    <Style x:Key="CircularButtonStyle" TargetType="Button">
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Padding" Value="5" />
+    </Style>
+    
+    <!-- 小圆形按钮样式（用于灯光控制等） -->
+    <Style x:Key="SmallCircularButtonStyle" TargetType="Button">
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HeightRequest" Value="25" />
+        <Setter Property="WidthRequest" Value="25" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Padding" Value="2" />
+    </Style>
+    
+    <!-- 方向按钮样式 -->
+    <Style x:Key="DirectionButtonStyle" TargetType="Button">
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="30" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BackgroundColor" Value="Blue" />
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+    
+    <!-- 圆形容器样式 -->
+    <Style x:Key="CircularContainerStyle" TargetType="Border">
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+        <Setter Property="Stroke" Value="Transparent" />
+    </Style>
+    
+    <!-- 紧凑标签样式 -->
+    <Style x:Key="CompactLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="0,2" />
+    </Style>
+    
+    <!-- 小标签样式 -->
+    <Style x:Key="SmallLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="0,1" />
+    </Style>
+    
+    <!-- 日志文本样式 -->
+    <Style x:Key="LogTextStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="Consolas,monospace" />
+        <Setter Property="FontSize" Value="8" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+    
+    <!-- 清空按钮样式 -->
+    <Style x:Key="ClearButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="8" />
+        <Setter Property="Padding" Value="6,3" />
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="BackgroundColor" Value="DarkRed" />
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+    
+    <!-- 退出按钮样式 -->
+    <Style x:Key="ExitButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="BackgroundColor" Value="DarkRed" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+</ResourceDictionary>
