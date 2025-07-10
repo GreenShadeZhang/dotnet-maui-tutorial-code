@@ -288,9 +288,13 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation($"执行动作: {actionNumber}, 速度: {speed}, 步数: {steps}");
 
-            // 使用真实的Robot SDK API
+            // 使用正确的参数顺序！
+            // 根据参数组合测试的结果，很可能正确顺序是 Set(speed, steps, actionNumber)
             var actionMessage = new ActionMessage();
-            actionMessage.Set(actionNumber, speed, steps);
+            
+            // 尝试最可能正确的参数顺序
+            _logger.LogInformation($"使用参数顺序: Set({speed}, {steps}, {actionNumber})");
+            actionMessage.Set(speed, steps, actionNumber);
             _robotService.RobotActionCommand(actionMessage);
 
             // 等待动作完成 - 根据动作类型调整等待时间

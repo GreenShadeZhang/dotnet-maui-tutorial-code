@@ -164,6 +164,30 @@ public class DebugPageViewModel : INotifyPropertyChanged
         }
     }
 
+    private async Task TestSpecificParameterOrderAsync()
+    {
+        IsTesting = true;
+        try
+        {
+            AddLogMessage("🔍 确认具体有效的参数组合...");
+            
+            // 如果您已经知道哪个组合有效，请告诉我
+            // 这里我先测试最可能的组合2: Set(speed, steps, actionNumber)
+            AddLogMessage("测试组合2: Set(50, 1, 63) - speed, steps, actionNumber");
+            await _robotService.DebugTestParameterCombinationsAsync();
+            
+            AddLogMessage("✅ 请观察机器人反应并记录哪个组合有效");
+        }
+        catch (Exception ex)
+        {
+            AddLogMessage($"❌ 测试错误: {ex.Message}");
+        }
+        finally
+        {
+            IsTesting = false;
+        }
+    }
+
     private void AddLogMessage(string message)
     {
         var timestamp = DateTime.Now.ToString("HH:mm:ss");
