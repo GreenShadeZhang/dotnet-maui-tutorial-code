@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.DebugPage"
+             Title="机器人调试测试">
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            
+            <!-- 状态信息 -->
+            <Border BackgroundColor="LightGray">
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*">
+                    <Label Grid.Row="0" Grid.Column="0" 
+                           Text="连接状态:" />
+                    <Label Grid.Row="0" Grid.Column="1" 
+                           Text="{Binding IsConnected}" 
+                           TextColor="{Binding IsConnected}"/>
+                    
+                    <Label Grid.Row="1" Grid.Column="0" 
+                           Text="测试状态:" 
+                           />
+                    <Label Grid.Row="1" Grid.Column="1" 
+                           Text="{Binding IsTesting}" 
+                           TextColor="{Binding IsTesting}"/>
+                </Grid>
+            </Border>
+
+            <!-- 初始化按钮 -->
+            <Button Text="🔄 初始化机器人" 
+                    Command="{Binding InitializeRobotCommand}"
+                    BackgroundColor="DodgerBlue"
+                    TextColor="White"/>
+
+            <!-- 测试按钮组 -->
+            <Border BackgroundColor="LightBlue">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🧪 调试测试" 
+                           FontSize="18" 
+                           
+                           HorizontalOptions="Center"/>
+                    
+                    <Button Text="🔍 测试所有动作编号" 
+                            Command="{Binding TestForwardActionsCommand}"
+                            BackgroundColor="Orange"
+                            TextColor="White"/>
+                    
+                    <Button Text="🔧 测试参数组合" 
+                            Command="{Binding TestParameterCombinationsCommand}"
+                            BackgroundColor="Green"
+                            TextColor="White"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 单个动作测试 -->
+            <Border BackgroundColor="LightYellow">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🎯 单个动作测试" 
+                           FontSize="18" 
+                           
+                           HorizontalOptions="Center"/>
+                    
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto" 
+                          ColumnDefinitions="*,*,*,*"
+                          RowSpacing="10" 
+                          ColumnSpacing="10">
+                        
+                        <!-- 第一行 -->
+                        <Button Grid.Row="0" Grid.Column="0" 
+                                Text="测试编号1" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="1"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="0" Grid.Column="1" 
+                                Text="测试编号2" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="2"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="0" Grid.Column="2" 
+                                Text="测试编号3" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="3"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="0" Grid.Column="3" 
+                                Text="测试编号4" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="4"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <!-- 第二行 -->
+                        <Button Grid.Row="1" Grid.Column="0" 
+                                Text="测试编号5" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="5"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="1" Grid.Column="1" 
+                                Text="测试编号6" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="6"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="1" Grid.Column="2" 
+                                Text="测试编号7" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="7"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="1" Grid.Column="3" 
+                                Text="测试编号8" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="8"
+                                BackgroundColor="Purple" 
+                                TextColor="White"/>
+                        
+                        <!-- 第三行 -->
+                        <Button Grid.Row="2" Grid.Column="0" 
+                                Text="测试编号63" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="63"
+                                BackgroundColor="Red" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="2" Grid.Column="1" 
+                                Text="测试编号64" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="64"
+                                BackgroundColor="Red" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="2" Grid.Column="2" 
+                                Text="测试编号65" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="65"
+                                BackgroundColor="Red" 
+                                TextColor="White"/>
+                        
+                        <Button Grid.Row="2" Grid.Column="3" 
+                                Text="测试编号66" 
+                                Command="{Binding TestSingleActionCommand}" 
+                                CommandParameter="66"
+                                BackgroundColor="Red" 
+                                TextColor="White"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 日志区域 -->
+            <Border BackgroundColor="Black">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" 
+                               Text="📋 调试日志" 
+                               FontSize="18" 
+                          
+                               TextColor="White"/>
+                        
+                        <Button Grid.Column="1" 
+                                Text="清空" 
+                                Command="{Binding ClearLogCommand}"
+                                BackgroundColor="DarkRed"
+                                TextColor="White"/>
+                    </Grid>
+                    
+                    <CollectionView ItemsSource="{Binding LogMessages}" 
+                                    HeightRequest="300"
+                                    BackgroundColor="Black">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding}" 
+                                       TextColor="LightGreen" 
+                                       FontFamily="Courier" 
+                                       FontSize="12" 
+                                       Padding="5"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

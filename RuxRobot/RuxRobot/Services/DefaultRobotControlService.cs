@@ -153,4 +153,16 @@ public class DefaultRobotControlService : IRobotControlService
         _logger.LogInformation("默认机器人服务清理完成");
         return Task.CompletedTask;
     }
+
+    public async Task DebugTestForwardActionsAsync()
+    {
+        _logger.LogInformation("调试测试前进动作（默认实现）");
+        await Task.Delay(100);
+    }
+
+    public async Task DebugTestParameterCombinationsAsync()
+    {
+        _logger.LogInformation("调试测试参数组合（默认实现）");
+        await Task.Delay(100);
+    }
 }

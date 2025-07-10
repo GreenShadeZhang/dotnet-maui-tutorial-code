@@ -4,11 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiApp1"
+    xmlns:views="clr-namespace:MauiApp1.Views"
     Title="MauiApp1">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="主页"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        
+        <ShellContent
+            Title="调试"
+            ContentTemplate="{DataTemplate views:DebugPage}"
+            Route="DebugPage" />
+    </TabBar>
 
 </Shell>

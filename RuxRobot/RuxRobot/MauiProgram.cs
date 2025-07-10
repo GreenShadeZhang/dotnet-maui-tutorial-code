@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
+using MauiApp1.Views;
 
 #if ANDROID
 using MauiApp1.Platforms.Android.Services;
@@ -42,9 +43,11 @@ namespace MauiApp1
 
             // 注册ViewModels
             services.AddTransient<MainPageViewModel>();
+            services.AddTransient<DebugPageViewModel>();
 
             // 注册Pages
             services.AddTransient<MainPage>();
+            services.AddTransient<DebugPage>();
         }
     }
 }

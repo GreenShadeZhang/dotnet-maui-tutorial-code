@@ -171,6 +171,16 @@ public interface IRobotControlService : IRobotSensorEvents
     /// 清理资源
     /// </summary>
     Task DisposeAsync();
+
+    /// <summary>
+    /// 调试方法：尝试多种动作编号来找出正确的前进动作
+    /// </summary>
+    Task DebugTestForwardActionsAsync();
+
+    /// <summary>
+    /// 调试方法：尝试不同的参数组合
+    /// </summary>
+    Task DebugTestParameterCombinationsAsync();
 }
 
 /// <summary>
@@ -179,23 +189,27 @@ public interface IRobotControlService : IRobotSensorEvents
 /// </summary>
 public static class RobotActionCommands
 {
-    // 基础移动动作
-    public const int MoveForward = 1;       // 向前走
-    public const int WalkBackward = 2;      // 向后走  
-    public const int TurnLeft = 3;          // 左转
-    public const int TurnRight = 4;         // 右转
+    // 基础移动动作 (根据官方文档修正)
+    public const int MoveForward = 63;      // 向前走
+    public const int WalkBackward = 64;     // 向后走  
+    public const int TurnLeft = 5;          // 左转
+    public const int TurnRight = 6;         // 右转
     
-    // 螃蟹步动作
-    public const int CrabStepLeft = 5;      // 螃蟹步左走
-    public const int CrabStepRight = 6;     // 螃蟹步右走
+    // 其他转向动作
+    public const int TurnToLeft = 3;        // 向左转
+    public const int TurnToRight = 4;       // 向右转
     
     // 抖腿动作
     public const int LeftShakingLeg = 7;    // 左抖腿
     public const int RightShakingLeg = 8;   // 右抖腿
     
-    // 变种前进后退动作（原来错误使用的编号）
-    public const int MoveForward2 = 63;     // 前进动作2
-    public const int WalkBackward2 = 64;    // 后退动作2
+    // 螃蟹步动作
+    public const int CrabStepLeft = 9;      // 螃蟹步左走
+    public const int CrabStepRight = 10;    // 螃蟹步右走
+    
+    // 备用动作编号（用于调试测试）
+    public const int MoveForward1 = 1;      // 前进动作1 (可能的备用编号)
+    public const int WalkBackward1 = 2;     // 后退动作1 (可能的备用编号)
 }
 
 /// <summary>

@@ -100,6 +100,12 @@ public class AndroidRobotControlService : IRobotControlService
             // 获取RobotService实例
             _robotService = RobotService.GetInstance(_context);
             
+            if (_robotService == null)
+            {
+                _logger.LogError("无法获取RobotService实例");
+                return false;
+            }
+            
             // 创建传感器回调
             _sensorCallback = new SensorCallbackImpl(
                 onTap: () => TapDetected?.Invoke(this, EventArgs.Empty),
@@ -112,8 +118,15 @@ public class AndroidRobotControlService : IRobotControlService
                 onTof: () => TofDetected?.Invoke(this, EventArgs.Empty)
             );
 
+            // 根据官方示例，初始化时自动启用电机
+            _logger.LogInformation("自动启用电机...");
+            _robotService.RobotOpenMotor();
+            await Task.Delay(500);
+            _motorEnabled = true;
+            _logger.LogInformation("电机已自动启用");
+
             // 模拟等待连接
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             _isInitialized = true;
             _logger.LogInformation("Android机器人服务初始化成功");
@@ -280,8 +293,16 @@ public class AndroidRobotControlService : IRobotControlService
             actionMessage.Set(actionNumber, speed, steps);
             _robotService.RobotActionCommand(actionMessage);
 
-            // 等待动作完成
-            await Task.Delay(1000);
+            // 等待动作完成 - 根据动作类型调整等待时间
+            int waitTime = actionNumber switch
+            {
+                63 or 64 => 1500, // 前进后退需要更长时间
+                5 or 6 => 1000,   // 转向动作
+                3 or 4 => 1000,   // 其他转向动作
+                _ => 800           // 其他动作
+            };
+            
+            await Task.Delay(waitTime);
             _logger.LogInformation($"动作 {actionNumber} 执行完成");
         }
         catch (System.Exception ex)
@@ -570,6 +591,114 @@ public class AndroidRobotControlService : IRobotControlService
         catch (System.Exception ex)
         {
             _logger.LogError(ex, "清理机器人服务资源失败");
+        }
+    }
+    #endregion
+
+    #region 调试测试
+    /// <summary>
+    /// 调试方法：尝试多种动作编号来找出正确的前进动作
+    /// </summary>
+    public async Task DebugTestForwardActionsAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化，无法执行调试测试");
+                return;
+            }
+
+            if (!_motorEnabled)
+            {
+                _logger.LogWarning("电机未启用，无法执行调试测试");
+                return;
+            }
+
+            _logger.LogInformation("=== 开始调试测试前进动作 ===");
+            
+            // 尝试不同的动作编号
+            int[] testActions = { 1, 2, 3, 4, 5, 6, 63, 64, 65, 66 };
+            
+            foreach (int actionNumber in testActions)
+            {
+                _logger.LogInformation($"测试动作编号: {actionNumber}");
+                
+                var actionMessage = new ActionMessage();
+                actionMessage.Set(actionNumber, 50, 1);
+                _robotService.RobotActionCommand(actionMessage);
+                
+                // 等待观察效果
+                await Task.Delay(3000);
+                
+                _logger.LogInformation($"动作编号 {actionNumber} 测试完成，请观察机器人是否有反应");
+            }
+            
+            _logger.LogInformation("=== 调试测试完成 ===");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "调试测试失败");
+        }
+    }
+
+    /// <summary>
+    /// 调试方法：尝试不同的参数组合
+    /// </summary>
+    public async Task DebugTestParameterCombinationsAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化，无法执行参数测试");
+                return;
+            }
+
+            if (!_motorEnabled)
+            {
+                _logger.LogWarning("电机未启用，无法执行参数测试");
+                return;
+            }
+
+            _logger.LogInformation("=== 开始测试参数组合 ===");
+            
+            // 使用动作编号63，尝试不同的参数组合
+            int actionNumber = 63;
+            
+            // 组合1: Set(actionNumber, speed, steps)
+            _logger.LogInformation($"测试组合1: Set({actionNumber}, 50, 1)");
+            var msg1 = new ActionMessage();
+            msg1.Set(actionNumber, 50, 1);
+            _robotService.RobotActionCommand(msg1);
+            await Task.Delay(3000);
+            
+            // 组合2: Set(speed, steps, actionNumber) - 根据官方示例推测
+            _logger.LogInformation($"测试组合2: Set(50, 1, {actionNumber})");
+            var msg2 = new ActionMessage();
+            msg2.Set(50, 1, actionNumber);
+            _robotService.RobotActionCommand(msg2);
+            await Task.Delay(3000);
+            
+            // 组合3: Set(steps, actionNumber, speed)
+            _logger.LogInformation($"测试组合3: Set(1, {actionNumber}, 50)");
+            var msg3 = new ActionMessage();
+            msg3.Set(1, actionNumber, 50);
+            _robotService.RobotActionCommand(msg3);
+            await Task.Delay(3000);
+            
+            // 组合4: 使用更高的速度值
+            _logger.LogInformation($"测试组合4: Set({actionNumber}, 100, 2)");
+            var msg4 = new ActionMessage();
+            msg4.Set(actionNumber, 100, 2);
+            _robotService.RobotActionCommand(msg4);
+            await Task.Delay(3000);
+            
+            _logger.LogInformation("=== 参数组合测试完成 ===");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "参数组合测试失败");
         }
     }
     #endregion
