@@ -33,41 +33,41 @@
                              Margin="40" />
                     
                     <!-- 内容区域 -->
-                    <StackLayout Spacing="20" Margin="80" VerticalOptions="Center">
-                        <!-- 机器人头像 -->
+                    <StackLayout Spacing="25" Margin="60" VerticalOptions="Center">
+                        <!-- 机器人头像 - 增大 -->
                         <Border BackgroundColor="#0F3460" 
-                               StrokeShape="RoundRectangle 50"
-                               WidthRequest="100" 
-                               HeightRequest="100"
+                               StrokeShape="RoundRectangle 60"
+                               WidthRequest="120" 
+                               HeightRequest="120"
                                HorizontalOptions="Center"
                                Padding="0">
                             <Label Text="🤖" 
-                                   FontSize="60" 
+                                   FontSize="80" 
                                    HorizontalOptions="Center" 
                                    VerticalOptions="Center" />
                         </Border>
                         
                         <!-- 状态显示 -->
                         <Label Text="{Binding StatusMessage}" 
-                               FontSize="18" 
+                               FontSize="20" 
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
-                        <!-- 连接按钮 -->
+                        <!-- 连接按钮 - 增大 -->
                         <Button Text="初始化连接" 
                                 Command="{Binding InitializeCommand}"
                                 BackgroundColor="#E94560"
                                 TextColor="White"
-                                FontSize="16"
-                                HeightRequest="50"
-                                CornerRadius="25"
+                                FontSize="18"
+                                HeightRequest="60"
+                                CornerRadius="30"
                                 HorizontalOptions="Center"
-                                WidthRequest="200" />
+                                WidthRequest="240" />
                         
                         <!-- 上下滑动提示 -->
                         <Label Text="↕️ 上下滑动查看更多功能" 
-                               FontSize="14" 
+                               FontSize="16" 
                                TextColor="Gray"
                                HorizontalOptions="Center" />
                     </StackLayout>
@@ -82,57 +82,57 @@
                              Margin="40" />
                     
                     <!-- 内容区域 -->
-                    <StackLayout Spacing="25" Margin="80" VerticalOptions="Center">
-                        <!-- 传感器图标 -->
+                    <StackLayout Spacing="25" Margin="60" VerticalOptions="Center">
+                        <!-- 传感器图标 - 保持大小 -->
                         <Label Text="📡" 
-                               FontSize="80" 
+                               FontSize="90" 
                                HorizontalOptions="Center" />
                         
                         <Label Text="传感器控制" 
-                               FontSize="24" 
+                               FontSize="26" 
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
-                        <!-- 传感器按钮组 -->
-                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" RowSpacing="15">
+                        <!-- 传感器按钮组 - 增大按钮 -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="20" RowSpacing="20">
                             <Button Grid.Column="0"
                                     Text="启动传感" 
                                     Command="{Binding StartSensorCommand}"
                                     BackgroundColor="#FF6B35"
                                     TextColor="White"
-                                    FontSize="16"
-                                    HeightRequest="45"
-                                    CornerRadius="22" />
+                                    FontSize="18"
+                                    HeightRequest="55"
+                                    CornerRadius="27" />
                             
                             <Button Grid.Column="1"
                                     Text="停止传感" 
                                     Command="{Binding StopSensorCommand}"
                                     BackgroundColor="#FF3F00"
                                     TextColor="White"
-                                    FontSize="16"
-                                    HeightRequest="45"
-                                    CornerRadius="22" />
+                                    FontSize="18"
+                                    HeightRequest="55"
+                                    CornerRadius="27" />
                         </Grid>
                         
-                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
                             <Button Grid.Column="0"
                                     Text="启用电机" 
                                     Command="{Binding EnableMotorCommand}"
                                     BackgroundColor="#7209B7"
                                     TextColor="White"
-                                    FontSize="16"
-                                    HeightRequest="45"
-                                    CornerRadius="22" />
+                                    FontSize="18"
+                                    HeightRequest="55"
+                                    CornerRadius="27" />
                             
                             <Button Grid.Column="1"
                                     Text="禁用电机" 
                                     Command="{Binding DisableMotorCommand}"
                                     BackgroundColor="#4A0E4E"
                                     TextColor="White"
-                                    FontSize="16"
-                                    HeightRequest="45"
-                                    CornerRadius="22" />
+                                    FontSize="18"
+                                    HeightRequest="55"
+                                    CornerRadius="27" />
                         </Grid>
                     </StackLayout>
                 </Grid>
@@ -146,23 +146,23 @@
                              Margin="40" />
                     
                     <!-- 内容区域 -->
-                    <StackLayout Spacing="20" Margin="80" VerticalOptions="Center">
+                    <StackLayout Spacing="25" Margin="60" VerticalOptions="Center">
                         <!-- 控制图标 -->
                         <Label Text="🎮" 
-                               FontSize="80" 
+                               FontSize="90" 
                                HorizontalOptions="Center" />
                         
                         <Label Text="动作控制" 
-                               FontSize="24" 
+                               FontSize="26" 
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
-                        <!-- 十字方向键 -->
+                        <!-- 十字方向键 - 增大按钮 -->
                         <Grid RowDefinitions="Auto,Auto,Auto" 
                               ColumnDefinitions="*,*,*" 
-                              RowSpacing="10" 
-                              ColumnSpacing="10"
+                              RowSpacing="15" 
+                              ColumnSpacing="15"
                               HorizontalOptions="Center">
                             
                             <!-- 向上 -->
@@ -171,10 +171,10 @@
                                     Command="{Binding MoveForwardCommand}"
                                     BackgroundColor="#4CAF50"
                                     TextColor="White"
-                                    FontSize="24"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
-                                    CornerRadius="30" />
+                                    FontSize="30"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                             
                             <!-- 向左 -->
                             <Button Grid.Row="1" Grid.Column="0" 
@@ -182,10 +182,10 @@
                                     Command="{Binding TurnLeftCommand}"
                                     BackgroundColor="#4CAF50"
                                     TextColor="White"
-                                    FontSize="24"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
-                                    CornerRadius="30" />
+                                    FontSize="30"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                             
                             <!-- 向右 -->
                             <Button Grid.Row="1" Grid.Column="2" 
@@ -193,10 +193,10 @@
                                     Command="{Binding TurnRightCommand}"
                                     BackgroundColor="#4CAF50"
                                     TextColor="White"
-                                    FontSize="24"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
-                                    CornerRadius="30" />
+                                    FontSize="30"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                             
                             <!-- 向下 -->
                             <Button Grid.Row="2" Grid.Column="1" 
@@ -204,10 +204,10 @@
                                     Command="{Binding MoveBackwardCommand}"
                                     BackgroundColor="#4CAF50"
                                     TextColor="White"
-                                    FontSize="24"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
-                                    CornerRadius="30" />
+                                    FontSize="30"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                         </Grid>
                     </StackLayout>
                 </Grid>
@@ -221,70 +221,70 @@
                              Margin="40" />
                     
                     <!-- 内容区域 -->
-                    <StackLayout Spacing="25" Margin="80" VerticalOptions="Center">
+                    <StackLayout Spacing="25" Margin="60" VerticalOptions="Center">
                         <!-- 天线图标 -->
                         <Label Text="📡" 
-                               FontSize="80" 
+                               FontSize="90" 
                                HorizontalOptions="Center" />
                         
                         <Label Text="天线控制" 
-                               FontSize="24" 
+                               FontSize="26" 
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
-                        <!-- 挥手按钮 -->
+                        <!-- 挥手按钮 - 增大 -->
                         <Button Text="🌊 挥手" 
                                 Command="{Binding AntennaWaveCommand}"
                                 BackgroundColor="#FF4081"
                                 TextColor="White"
-                                FontSize="18"
-                                HeightRequest="50"
-                                CornerRadius="25"
+                                FontSize="20"
+                                HeightRequest="60"
+                                CornerRadius="30"
                                 HorizontalOptions="Center"
-                                WidthRequest="200" />
+                                WidthRequest="240" />
                         
-                        <!-- 彩色灯光按钮 -->
-                        <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10" HorizontalOptions="Center">
+                        <!-- 彩色灯光按钮 - 增大 -->
+                        <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="15" HorizontalOptions="Center">
                             <Button Grid.Column="0"
                                     Text="🔴" 
                                     Command="{Binding SetRedLightCommand}"
                                     BackgroundColor="#F44336"
                                     TextColor="White"
-                                    FontSize="20"
-                                    HeightRequest="50"
-                                    WidthRequest="50"
-                                    CornerRadius="25" />
+                                    FontSize="24"
+                                    HeightRequest="60"
+                                    WidthRequest="60"
+                                    CornerRadius="30" />
                             
                             <Button Grid.Column="1"
                                     Text="🟢" 
                                     Command="{Binding SetGreenLightCommand}"
                                     BackgroundColor="#4CAF50"
                                     TextColor="White"
-                                    FontSize="20"
-                                    HeightRequest="50"
-                                    WidthRequest="50"
-                                    CornerRadius="25" />
+                                    FontSize="24"
+                                    HeightRequest="60"
+                                    WidthRequest="60"
+                                    CornerRadius="30" />
                             
                             <Button Grid.Column="2"
                                     Text="🔵" 
                                     Command="{Binding SetBlueLightCommand}"
                                     BackgroundColor="#2196F3"
                                     TextColor="White"
-                                    FontSize="20"
-                                    HeightRequest="50"
-                                    WidthRequest="50"
-                                    CornerRadius="25" />
+                                    FontSize="24"
+                                    HeightRequest="60"
+                                    WidthRequest="60"
+                                    CornerRadius="30" />
                             
                             <Button Grid.Column="3"
                                     Text="⚫" 
                                     Command="{Binding TurnOffLightCommand}"
                                     BackgroundColor="#424242"
                                     TextColor="White"
-                                    FontSize="20"
-                                    HeightRequest="50"
-                                    WidthRequest="50"
-                                    CornerRadius="25" />
+                                    FontSize="24"
+                                    HeightRequest="60"
+                                    WidthRequest="60"
+                                    CornerRadius="30" />
                         </Grid>
                     </StackLayout>
                 </Grid>
@@ -298,62 +298,62 @@
                              Margin="40" />
                     
                     <!-- 内容区域 - 调整间距 -->
-                    <StackLayout Spacing="20" Margin="75" VerticalOptions="Center">
-                        <!-- 表情图标 - 稍微缩小 -->
+                    <StackLayout Spacing="25" Margin="60" VerticalOptions="Center">
+                        <!-- 表情图标 - 增大 -->
                         <Label Text="😊" 
-                               FontSize="65" 
+                               FontSize="85" 
                                HorizontalOptions="Center" />
                         
                         <Label Text="表情语音" 
-                               FontSize="22" 
+                               FontSize="26" 
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
-                        <!-- 表情按钮 - 调整尺寸 -->
-                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12" RowSpacing="12">
+                        <!-- 表情按钮 - 增大尺寸 -->
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="18" RowSpacing="18">
                             <Button Grid.Column="0"
                                     Text="😊" 
                                     Command="{Binding ShowHappyCommand}"
                                     BackgroundColor="#FFD700"
                                     TextColor="Black"
-                                    FontSize="22"
-                                    HeightRequest="55"
-                                    WidthRequest="55"
-                                    CornerRadius="27" />
+                                    FontSize="28"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                             
                             <Button Grid.Column="1"
                                     Text="😢" 
                                     Command="{Binding ShowSadCommand}"
                                     BackgroundColor="#4169E1"
                                     TextColor="White"
-                                    FontSize="22"
-                                    HeightRequest="55"
-                                    WidthRequest="55"
-                                    CornerRadius="27" />
+                                    FontSize="28"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                             
                             <Button Grid.Column="2"
                                     Text="🗣️" 
                                     Command="{Binding SpeakHelloCommand}"
                                     BackgroundColor="#32CD32"
                                     TextColor="White"
-                                    FontSize="22"
-                                    HeightRequest="55"
-                                    WidthRequest="55"
-                                    CornerRadius="27" />
+                                    FontSize="28"
+                                    HeightRequest="70"
+                                    WidthRequest="70"
+                                    CornerRadius="35" />
                         </Grid>
                         
-                        <!-- 舞蹈按钮 - 调整尺寸 -->
+                        <!-- 舞蹈按钮 - 增大 -->
                         <Button Text="💃 舞蹈" 
                                 Command="{Binding PerformDanceCommand}"
                                 BackgroundColor="#FF1493"
                                 TextColor="White"
-                                FontSize="16"
-                                HeightRequest="45"
-                                CornerRadius="22"
+                                FontSize="18"
+                                HeightRequest="55"
+                                CornerRadius="27"
                                 HorizontalOptions="Center"
-                                WidthRequest="180"
-                                Margin="0,10,0,0" />
+                                WidthRequest="220"
+                                Margin="0,15,0,0" />
                     </StackLayout>
                 </Grid>
                 
@@ -366,57 +366,57 @@
                              Margin="40" />
                     
                     <!-- 内容区域 - 调整间距和边距 -->
-                    <StackLayout Spacing="15" Margin="70" VerticalOptions="Center">
-                        <!-- 日志图标 - 缩小图标 -->
+                    <StackLayout Spacing="20" Margin="50" VerticalOptions="Center">
+                        <!-- 日志图标 - 增大图标 -->
                         <Label Text="📋" 
-                               FontSize="60" 
+                               FontSize="75" 
                                HorizontalOptions="Center" />
                         
                         <Label Text="系统日志" 
-                               FontSize="20" 
+                               FontSize="24" 
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
-                        <!-- 日志显示区域 - 减小高度 -->
+                        <!-- 日志显示区域 - 增大高度 -->
                         <Border BackgroundColor="#2D2D2D" 
-                               StrokeShape="RoundRectangle 12"
-                               HeightRequest="120"
-                               Padding="8">
+                               StrokeShape="RoundRectangle 15"
+                               HeightRequest="140"
+                               Padding="12">
                             <ScrollView>
                                 <Label Text="{Binding LogMessages}" 
                                        FontFamily="Consolas,monospace"
-                                       FontSize="10"
+                                       FontSize="12"
                                        TextColor="LightGreen"
                                        VerticalOptions="Start" />
                             </ScrollView>
                         </Border>
                         
-                        <!-- 系统控制按钮 - 调整尺寸和间距 -->
-                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,10,0,0">
+                        <!-- 系统控制按钮 - 增大按钮 -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,15,0,0">
                             <Button Grid.Column="0"
                                     Text="清空日志" 
                                     Command="{Binding ClearLogCommand}"
                                     BackgroundColor="#FF4444"
                                     TextColor="White"
-                                    FontSize="14"
-                                    HeightRequest="40"
-                                    CornerRadius="20"
-                                    Padding="5" />
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    CornerRadius="25"
+                                    Padding="8" />
                             
                             <Button Grid.Column="1"
                                     Text="🚪 退出" 
                                     Command="{Binding ExitAppCommand}"
                                     BackgroundColor="#8B0000"
                                     TextColor="White"
-                                    FontSize="14"
-                                    HeightRequest="40"
-                                    CornerRadius="20"
-                                    Padding="5" />
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    CornerRadius="25"
+                                    Padding="8" />
                         </Grid>
                         
-                        <!-- 底部安全区域 - 确保按钮不被裁剪 -->
-                        <BoxView HeightRequest="20" BackgroundColor="Transparent" />
+                        <!-- 底部安全区域 - 减少空间 -->
+                        <BoxView HeightRequest="10" BackgroundColor="Transparent" />
                     </StackLayout>
                 </Grid>
 
