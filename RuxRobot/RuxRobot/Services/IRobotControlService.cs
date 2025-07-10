@@ -175,16 +175,27 @@ public interface IRobotControlService : IRobotSensorEvents
 
 /// <summary>
 /// 机器人动作命令常量
+/// 根据官方SDK文档：https://cn.letianpai.com/?p=5915
 /// </summary>
 public static class RobotActionCommands
 {
-    public const int MoveForward = 63;
-    public const int WalkBackward = 64;
-    public const int TurnLeft = 5;
-    public const int GoRight = 6;
-    public const int TurnToTheLeft = 3;
-    public const int TurnToTheRight = 4;
-    public const int LeftShakingLeg = 7;
+    // 基础移动动作
+    public const int MoveForward = 1;       // 向前走
+    public const int WalkBackward = 2;      // 向后走  
+    public const int TurnLeft = 3;          // 左转
+    public const int TurnRight = 4;         // 右转
+    
+    // 螃蟹步动作
+    public const int CrabStepLeft = 5;      // 螃蟹步左走
+    public const int CrabStepRight = 6;     // 螃蟹步右走
+    
+    // 抖腿动作
+    public const int LeftShakingLeg = 7;    // 左抖腿
+    public const int RightShakingLeg = 8;   // 右抖腿
+    
+    // 变种前进后退动作（原来错误使用的编号）
+    public const int MoveForward2 = 63;     // 前进动作2
+    public const int WalkBackward2 = 64;    // 后退动作2
 }
 
 /// <summary>

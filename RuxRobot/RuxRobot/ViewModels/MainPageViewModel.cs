@@ -56,8 +56,17 @@ public class MainPageViewModel : INotifyPropertyChanged
     public bool MotorEnabled
     {
         get => _motorEnabled;
-        set => SetProperty(ref _motorEnabled, value);
+        set 
+        { 
+            SetProperty(ref _motorEnabled, value);
+            OnPropertyChanged(nameof(MotorStatusText));
+            OnPropertyChanged(nameof(MotorStatusColor));
+        }
     }
+
+    public string MotorStatusText => MotorEnabled ? "⚡ 电机已启用 - 可以使用方向控制" : "🔌 请先启用电机才能控制机器人移动";
+    
+    public Color MotorStatusColor => MotorEnabled ? Colors.Green : Colors.Orange;
 
     public string StatusMessage
     {
@@ -114,10 +123,29 @@ public class MainPageViewModel : INotifyPropertyChanged
         EnableMotorCommand = new Command(async () => await EnableMotorAsync(), () => IsInitialized && !MotorEnabled);
         DisableMotorCommand = new Command(async () => await DisableMotorAsync(), () => IsInitialized && MotorEnabled);
 
-        MoveForwardCommand = new Command(async () => await _robotService.MoveForwardAsync(), () => MotorEnabled);
-        MoveBackwardCommand = new Command(async () => await _robotService.MoveBackwardAsync(), () => MotorEnabled);
-        TurnLeftCommand = new Command(async () => await _robotService.TurnLeftAsync(), () => MotorEnabled);
-        TurnRightCommand = new Command(async () => await _robotService.TurnRightAsync(), () => MotorEnabled);
+        MoveForwardCommand = new Command(async () => 
+        {
+            AddLogMessage($"🎯 执行前进命令 (动作编号: {RobotActionCommands.MoveForward})");
+            await _robotService.MoveForwardAsync();
+        }, () => MotorEnabled);
+        
+        MoveBackwardCommand = new Command(async () => 
+        {
+            AddLogMessage($"🎯 执行后退命令 (动作编号: {RobotActionCommands.WalkBackward})");
+            await _robotService.MoveBackwardAsync();
+        }, () => MotorEnabled);
+        
+        TurnLeftCommand = new Command(async () => 
+        {
+            AddLogMessage($"🎯 执行左转命令 (动作编号: {RobotActionCommands.TurnLeft})");
+            await _robotService.TurnLeftAsync();
+        }, () => MotorEnabled);
+        
+        TurnRightCommand = new Command(async () => 
+        {
+            AddLogMessage($"🎯 执行右转命令 (动作编号: {RobotActionCommands.TurnRight})");
+            await _robotService.TurnRightAsync();
+        }, () => MotorEnabled);
 
         AntennaWaveCommand = new Command(async () => await _robotService.MoveAntennaAsync(1, 10, 50, 45), () => IsInitialized);
         SetRedLightCommand = new Command(async () => await SetAntennaLightAsync(RobotColors.Red), () => IsInitialized);

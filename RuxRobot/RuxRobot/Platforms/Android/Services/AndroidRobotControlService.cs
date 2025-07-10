@@ -235,31 +235,41 @@ public class AndroidRobotControlService : IRobotControlService
     #region 动作控制
     public async Task MoveForwardAsync(int speed = 50, int steps = 1)
     {
+        _logger.LogInformation($"请求前进动作: 编号={RobotActionCommands.MoveForward}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.MoveForward, speed, steps);
     }
 
     public async Task MoveBackwardAsync(int speed = 50, int steps = 1)
     {
+        _logger.LogInformation($"请求后退动作: 编号={RobotActionCommands.WalkBackward}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.WalkBackward, speed, steps);
     }
 
     public async Task TurnLeftAsync(int speed = 50, int steps = 1)
     {
+        _logger.LogInformation($"请求左转动作: 编号={RobotActionCommands.TurnLeft}, 速度={speed}, 步数={steps}");
         await PerformActionAsync(RobotActionCommands.TurnLeft, speed, steps);
     }
 
     public async Task TurnRightAsync(int speed = 50, int steps = 1)
     {
-        await PerformActionAsync(RobotActionCommands.GoRight, speed, steps);
+        _logger.LogInformation($"请求右转动作: 编号={RobotActionCommands.TurnRight}, 速度={speed}, 步数={steps}");
+        await PerformActionAsync(RobotActionCommands.TurnRight, speed, steps);
     }
 
     public async Task PerformActionAsync(int actionNumber, int speed = 50, int steps = 1)
     {
         try
         {
-            if (!_motorEnabled || _robotService == null)
+            if (_robotService == null)
             {
-                _logger.LogWarning("电机未启用或服务未初始化，无法执行动作");
+                _logger.LogWarning("RobotService未初始化，无法执行动作");
+                return;
+            }
+
+            if (!_motorEnabled)
+            {
+                _logger.LogWarning("电机未启用，无法执行动作。请先调用EnableMotorAsync()启用电机");
                 return;
             }
 

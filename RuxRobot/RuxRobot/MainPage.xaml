@@ -158,6 +158,13 @@
                                TextColor="White"
                                HorizontalOptions="Center" />
                         
+                        <!-- 电机状态提示 -->
+                        <Label Text="{Binding MotorStatusText}" 
+                               FontSize="16" 
+                               TextColor="{Binding MotorStatusColor}"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold" />
+                        
                         <!-- 十字方向键 - 增大按钮 -->
                         <Grid RowDefinitions="Auto,Auto,Auto" 
                               ColumnDefinitions="*,*,*" 
