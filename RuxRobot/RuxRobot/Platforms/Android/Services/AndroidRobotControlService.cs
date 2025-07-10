@@ -294,7 +294,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation($"控制天线运动: cmd={cmd}, step={step}, speed={speed}, angle={angle}");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             var antennaMessage = new AntennaMessage();
             antennaMessage.Set(cmd, step, speed, angle);
             _robotService.RobotAntennaMotion(antennaMessage);
@@ -320,7 +320,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation($"设置天线灯光颜色: 0x{color:X6}");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             var lightMessage = new AntennaLightMessage();
             lightMessage.Set(color);
             _robotService.RobotAntennaLight(lightMessage);
@@ -346,7 +346,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation("关闭天线灯光");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             _robotService.RobotCloseAntennaLight();
 
             await Task.Delay(200);
@@ -372,7 +372,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation($"播放TTS: {text}");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             _robotService.RobotPlayTTs(text);
 
             // 模拟TTS播放时间
@@ -397,7 +397,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation($"显示表情: {expression}");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             _robotService.RobotStartExpression(expression);
 
             await Task.Delay(300);
@@ -421,7 +421,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation("停止表情");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             _robotService.RobotStopExpression();
 
             await Task.Delay(200);
@@ -467,7 +467,7 @@ public class AndroidRobotControlService : IRobotControlService
 
             _logger.LogInformation($"控制状态栏: {statusBarData}");
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             _robotService.RobotControlStatusBar(statusBarData);
 
             await Task.Delay(200);
@@ -476,6 +476,65 @@ public class AndroidRobotControlService : IRobotControlService
         catch (System.Exception ex)
         {
             _logger.LogError(ex, "控制状态栏失败");
+        }
+    }
+    #endregion
+
+    #region 音效控制
+    /// <summary>
+    /// 播放内置音效
+    /// </summary>
+    /// <param name="soundId">音效ID (如: "a0001", "a0005"等)</param>
+    public async Task PlaySoundAsync(string soundId)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"播放音效: {soundId}");
+
+            // 使用真实的Robot SDK
+            _robotService.RobotControlSound(soundId);
+
+            await Task.Delay(500);
+            _logger.LogInformation($"音效 {soundId} 播放完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, $"播放音效 {soundId} 失败");
+        }
+    }
+
+    /// <summary>
+    /// 发送长连接命令(如舞蹈、唱歌)
+    /// </summary>
+    /// <param name="command">命令类型 (如: "speechDance", "speechMusic")</param>
+    /// <param name="data">命令数据</param>
+    public async Task SendLongCommandAsync(string command, string data)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"发送长连接命令: {command}, 数据: {data}");
+
+            // 使用真实的Robot SDK
+            _robotService.SendLongCommand(command, data);
+
+            await Task.Delay(300);
+            _logger.LogInformation($"长连接命令 {command} 发送完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, $"发送长连接命令 {command} 失败");
         }
     }
     #endregion
@@ -492,7 +551,7 @@ public class AndroidRobotControlService : IRobotControlService
             await TurnOffAntennaLightAsync();
             await StopExpressionAsync();
 
-            // 使用真实的Robot SDK API
+            // 使用真实的Robot SDK
             _robotService?.UnbindService();
 
             _isInitialized = false;

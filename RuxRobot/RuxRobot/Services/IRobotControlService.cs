@@ -153,6 +153,19 @@ public interface IRobotControlService : IRobotSensorEvents
     /// </summary>
     Task ControlStatusBarAsync(string statusBarData);
     
+    /// <summary>
+    /// 播放内置音效
+    /// </summary>
+    /// <param name="soundId">音效ID (如: "a0001", "a0005"等)</param>
+    Task PlaySoundAsync(string soundId);
+    
+    /// <summary>
+    /// 发送长连接命令
+    /// </summary>
+    /// <param name="command">命令类型 (如: "speechDance", "speechMusic")</param>
+    /// <param name="data">命令数据</param>
+    Task SendLongCommandAsync(string command, string data);
+    
     // 资源清理
     /// <summary>
     /// 清理资源
@@ -202,4 +215,60 @@ public static class RobotExpressions
     public const string Thinking = "thinking";
     public const string Sleeping = "sleeping";
     public const string Excited = "excited";
+}
+
+/// <summary>
+/// 机器人音效常量
+/// </summary>
+public static class RobotSounds
+{
+    public const string Beep = "a0001";
+    public const string Hammer = "a0005";
+    public const string Laser = "a0007";
+    public const string Pulse = "a0010";
+    public const string Electromagnetic = "a0011";
+    public const string Charging = "a0025";
+    public const string Click = "a0028";
+    public const string Alarm = "a0029";
+    public const string Comfortable = "a0030";
+    public const string Confused = "a0031";
+    public const string Hahaha = "a0032";
+    public const string Dizzy = "a0034";
+    public const string Tired = "a0036";
+    public const string Afraid = "a0037";
+    public const string Surprised = "a0039";
+    public const string Complete = "a0040";
+    public const string IAmLetianpai = "a0054";
+    public const string LowBattery = "a0055";
+    public const string Warning = "a0056";
+    public const string NoBattery = "a0057";
+    public const string Error = "a0059";
+    public const string Breathing = "a0064";
+    public const string Wow = "a0067";
+    public const string Panic = "a0070";
+    public const string Snoring = "a0077";
+    public const string Response = "a0084";
+    public const string Sad = "a0086";
+    public const string Shutdown = "a0088";
+    public const string Shy = "a0090";
+    public const string Startup = "a0093";
+    public const string Happy = "a0100";
+    public const string Embarrassed = "a0107";
+    public const string Bell = "a0108";
+    public const string Proud = "a0115";
+    public const string Horn = "a0118";
+    public const string Doorbell = "a0121";
+    public const string Typing = "a0125";
+    public const string NewMessage = "a0126";
+    public const string PhoneRing = "a0132";
+    public const string Lost = "a0133";
+}
+
+/// <summary>
+/// 机器人长连接命令常量
+/// </summary>
+public static class RobotLongCommands
+{
+    public const string SpeechDance = "speechDance";
+    public const string SpeechMusic = "speechMusic";
 }

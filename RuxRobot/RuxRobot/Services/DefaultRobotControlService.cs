@@ -136,6 +136,18 @@ public class DefaultRobotControlService : IRobotControlService
         return Task.CompletedTask;
     }
 
+    public Task PlaySoundAsync(string soundId)
+    {
+        _logger.LogWarning("音效播放仅在Android平台可用");
+        return Task.CompletedTask;
+    }
+
+    public Task SendLongCommandAsync(string command, string data)
+    {
+        _logger.LogWarning("长连接命令仅在Android平台可用");
+        return Task.CompletedTask;
+    }
+
     public Task DisposeAsync()
     {
         _logger.LogInformation("默认机器人服务清理完成");
