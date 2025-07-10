@@ -190,26 +190,61 @@ public interface IRobotControlService : IRobotSensorEvents
 public static class RobotActionCommands
 {
     // 基础移动动作 (根据官方文档修正)
-    public const int MoveForward = 63;      // 向前走
-    public const int WalkBackward = 64;     // 向后走  
-    public const int TurnLeft = 5;          // 左转
-    public const int TurnRight = 6;         // 右转
+    public const int MoveForward = 63;      // 前进动作2 (推荐使用)
+    public const int WalkBackward = 64;     // 后退动作2 (推荐使用)
+    public const int TurnLeft = 3;          // 左转
+    public const int TurnRight = 4;         // 右转
     
-    // 其他转向动作
-    public const int TurnToLeft = 3;        // 向左转
-    public const int TurnToRight = 4;       // 向右转
+    // 螃蟹步动作 (根据官方文档)
+    public const int CrabStepLeft = 5;      // 螃蟹步左走
+    public const int CrabStepRight = 6;     // 螃蟹步右走
     
     // 抖腿动作
     public const int LeftShakingLeg = 7;    // 左抖腿
     public const int RightShakingLeg = 8;   // 右抖腿
     
-    // 螃蟹步动作
-    public const int CrabStepLeft = 9;      // 螃蟹步左走
-    public const int CrabStepRight = 10;    // 螃蟹步右走
+    // 抖脚动作
+    public const int LeftShakingFoot = 9;   // 左抖脚
+    public const int RightShakingFoot = 10; // 右抖脚
+    
+    // 翘脚动作
+    public const int LeftFootUp = 11;       // 左翘脚
+    public const int RightFootUp = 12;      // 右翘脚
+    
+    // 倾身动作
+    public const int LeanLeft = 13;         // 左倾身
+    public const int LeanRight = 14;        // 右倾身
+    
+    // 跺脚动作
+    public const int StompLeft = 15;        // 左跺脚
+    public const int StompRight = 16;       // 右跺脚
+    
+    // 身体摆动
+    public const int BodyUpDown = 17;       // 身体上下摆动
+    public const int BodyLeftRight = 18;    // 身体左右摆动
+    
+    // 头部动作
+    public const int HeadShake = 19;        // 左右摇头
+    public const int Attention = 20;        // 稍息
+    
+    // 原地转身
+    public const int TurnInPlaceLeft = 21;  // 原地左转
+    public const int TurnInPlaceRight = 22; // 原地右转
+    
+    // 组合动作
+    public const int DoubleShakeFoot = 23;  // 双抖脚
+    public const int MicroShake = 24;       // 微抖
+    public const int MicroTurnLeft = 25;    // 微左转
+    public const int MicroTurnRight = 26;   // 微右转
+    public const int Sway = 27;             // 摇摆
+    public const int ShakeHead = 28;        // 摇头
+    
+    // 舞蹈动作
+    public const int DanceMove = 80;        // 舞蹈扭动
     
     // 备用动作编号（用于调试测试）
-    public const int MoveForward1 = 1;      // 前进动作1 (可能的备用编号)
-    public const int WalkBackward1 = 2;     // 后退动作1 (可能的备用编号)
+    public const int MoveForward1 = 1;      // 向前走 (备用编号)
+    public const int WalkBackward1 = 2;     // 向后走 (备用编号)
 }
 
 /// <summary>

@@ -97,6 +97,20 @@ public class MainPageViewModel : INotifyPropertyChanged
     public ICommand MoveBackwardCommand { get; private set; } = null!;
     public ICommand TurnLeftCommand { get; private set; } = null!;
     public ICommand TurnRightCommand { get; private set; } = null!;
+    public ICommand StopMotorCommand { get; private set; } = null!;
+    public ICommand CrabStepCommand { get; private set; } = null!;
+    public ICommand ShakeLegCommand { get; private set; } = null!;
+    
+    // 高级动作命令
+    public ICommand LeftShakeLegCommand { get; private set; } = null!;
+    public ICommand RightShakeLegCommand { get; private set; } = null!;
+    public ICommand BodySwayCommand { get; private set; } = null!;
+    public ICommand LeftStompCommand { get; private set; } = null!;
+    public ICommand RightStompCommand { get; private set; } = null!;
+    public ICommand HeadShakeCommand { get; private set; } = null!;
+    public ICommand TurnInPlaceLeftCommand { get; private set; } = null!;
+    public ICommand TurnInPlaceRightCommand { get; private set; } = null!;
+    public ICommand DanceMoveCommand { get; private set; } = null!;
     
     // 天线命令
     public ICommand AntennaWaveCommand { get; private set; } = null!;
@@ -145,6 +159,85 @@ public class MainPageViewModel : INotifyPropertyChanged
         {
             AddLogMessage($"🎯 执行右转命令 (动作编号: {RobotActionCommands.TurnRight})");
             await _robotService.TurnRightAsync();
+        }, () => MotorEnabled);
+
+        StopMotorCommand = new Command(async () => 
+        {
+            AddLogMessage("🛑 停止电机运动");
+            await _robotService.DisableMotorAsync();
+            await Task.Delay(100);
+            await _robotService.EnableMotorAsync();
+        }, () => MotorEnabled);
+
+        CrabStepCommand = new Command(async () => 
+        {
+            AddLogMessage($"🦀 执行螃蟹步 (左右切换)");
+            await _robotService.PerformActionAsync(RobotActionCommands.CrabStepLeft, 50, 2);
+            await Task.Delay(500);
+            await _robotService.PerformActionAsync(RobotActionCommands.CrabStepRight, 50, 2);
+        }, () => MotorEnabled);
+
+        ShakeLegCommand = new Command(async () => 
+        {
+            AddLogMessage($"🕺 执行抖腿动作");
+            await _robotService.PerformActionAsync(RobotActionCommands.LeftShakingLeg, 50, 3);
+            await Task.Delay(300);
+            await _robotService.PerformActionAsync(RobotActionCommands.RightShakingLeg, 50, 3);
+        }, () => MotorEnabled);
+
+        // 高级动作命令
+        LeftShakeLegCommand = new Command(async () => 
+        {
+            AddLogMessage($"🕺 执行左抖腿动作 (编号: {RobotActionCommands.LeftShakingLeg})");
+            await _robotService.PerformActionAsync(RobotActionCommands.LeftShakingLeg, 50, 3);
+        }, () => MotorEnabled);
+
+        RightShakeLegCommand = new Command(async () => 
+        {
+            AddLogMessage($"🕺 执行右抖腿动作 (编号: {RobotActionCommands.RightShakingLeg})");
+            await _robotService.PerformActionAsync(RobotActionCommands.RightShakingLeg, 50, 3);
+        }, () => MotorEnabled);
+
+        BodySwayCommand = new Command(async () => 
+        {
+            AddLogMessage($"🤸 执行身体摆动 (编号: {RobotActionCommands.BodyLeftRight})");
+            await _robotService.PerformActionAsync(RobotActionCommands.BodyLeftRight, 50, 2);
+        }, () => MotorEnabled);
+
+        LeftStompCommand = new Command(async () => 
+        {
+            AddLogMessage($"🦶 执行左跺脚 (编号: {RobotActionCommands.StompLeft})");
+            await _robotService.PerformActionAsync(RobotActionCommands.StompLeft, 50, 2);
+        }, () => MotorEnabled);
+
+        RightStompCommand = new Command(async () => 
+        {
+            AddLogMessage($"🦶 执行右跺脚 (编号: {RobotActionCommands.StompRight})");
+            await _robotService.PerformActionAsync(RobotActionCommands.StompRight, 50, 2);
+        }, () => MotorEnabled);
+
+        HeadShakeCommand = new Command(async () => 
+        {
+            AddLogMessage($"🤖 执行摇头动作 (编号: {RobotActionCommands.HeadShake})");
+            await _robotService.PerformActionAsync(RobotActionCommands.HeadShake, 50, 2);
+        }, () => MotorEnabled);
+
+        TurnInPlaceLeftCommand = new Command(async () => 
+        {
+            AddLogMessage($"🔄 执行原地左转 (编号: {RobotActionCommands.TurnInPlaceLeft})");
+            await _robotService.PerformActionAsync(RobotActionCommands.TurnInPlaceLeft, 50, 1);
+        }, () => MotorEnabled);
+
+        TurnInPlaceRightCommand = new Command(async () => 
+        {
+            AddLogMessage($"🔄 执行原地右转 (编号: {RobotActionCommands.TurnInPlaceRight})");
+            await _robotService.PerformActionAsync(RobotActionCommands.TurnInPlaceRight, 50, 1);
+        }, () => MotorEnabled);
+
+        DanceMoveCommand = new Command(async () => 
+        {
+            AddLogMessage($"💃 执行舞蹈扭动 (编号: {RobotActionCommands.DanceMove})");
+            await _robotService.PerformActionAsync(RobotActionCommands.DanceMove, 50, 2);
         }, () => MotorEnabled);
 
         AntennaWaveCommand = new Command(async () => await _robotService.MoveAntennaAsync(1, 10, 50, 45), () => IsInitialized);
@@ -367,6 +460,21 @@ public class MainPageViewModel : INotifyPropertyChanged
         ((Command)MoveBackwardCommand).ChangeCanExecute();
         ((Command)TurnLeftCommand).ChangeCanExecute();
         ((Command)TurnRightCommand).ChangeCanExecute();
+        ((Command)StopMotorCommand).ChangeCanExecute();
+        ((Command)CrabStepCommand).ChangeCanExecute();
+        ((Command)ShakeLegCommand).ChangeCanExecute();
+        
+        // 高级动作命令
+        ((Command)LeftShakeLegCommand).ChangeCanExecute();
+        ((Command)RightShakeLegCommand).ChangeCanExecute();
+        ((Command)BodySwayCommand).ChangeCanExecute();
+        ((Command)LeftStompCommand).ChangeCanExecute();
+        ((Command)RightStompCommand).ChangeCanExecute();
+        ((Command)HeadShakeCommand).ChangeCanExecute();
+        ((Command)TurnInPlaceLeftCommand).ChangeCanExecute();
+        ((Command)TurnInPlaceRightCommand).ChangeCanExecute();
+        ((Command)DanceMoveCommand).ChangeCanExecute();
+        
         ((Command)AntennaWaveCommand).ChangeCanExecute();
         ((Command)SetRedLightCommand).ChangeCanExecute();
         ((Command)SetGreenLightCommand).ChangeCanExecute();
