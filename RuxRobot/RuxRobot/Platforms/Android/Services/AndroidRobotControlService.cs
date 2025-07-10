@@ -1,0 +1,507 @@
+using Android.Content;
+using AndroidX.Core.Content;
+using Java.Lang;
+using MauiApp1.Services;
+using Microsoft.Extensions.Logging;
+using AndroidApp = Android.App.Application;
+using RobotSDK.Core;
+using RobotSDK.Messages;
+using RobotSDK.Callbacks;
+using RobotSDK.Commands;
+
+namespace MauiApp1.Platforms.Android.Services;
+
+/// <summary>
+/// 传感器回调实现类
+/// 实现ISensorCallback接口，将传感器事件转发到C#事件
+/// </summary>
+public class SensorCallbackImpl : Java.Lang.Object, ISensorCallback
+{
+    private readonly Action _onTap;
+    private readonly Action _onDoubleTap;
+    private readonly Action _onLongPress;
+    private readonly Action _onFallBackward;
+    private readonly Action _onFallForward;
+    private readonly Action _onFallRight;
+    private readonly Action _onFallLeft;
+    private readonly Action _onTof;
+
+    public SensorCallbackImpl(
+        Action onTap,
+        Action onDoubleTap,
+        Action onLongPress,
+        Action onFallBackward,
+        Action onFallForward,
+        Action onFallRight,
+        Action onFallLeft,
+        Action onTof)
+    {
+        _onTap = onTap;
+        _onDoubleTap = onDoubleTap;
+        _onLongPress = onLongPress;
+        _onFallBackward = onFallBackward;
+        _onFallForward = onFallForward;
+        _onFallRight = onFallRight;
+        _onFallLeft = onFallLeft;
+        _onTof = onTof;
+    }
+
+    public void OnTapResponse() => _onTap?.Invoke();
+    public void OnDoubleTapResponse() => _onDoubleTap?.Invoke();
+    public void OnLongPressResponse() => _onLongPress?.Invoke();
+    public void OnFallBackend() => _onFallBackward?.Invoke();
+    public void OnFallForward() => _onFallForward?.Invoke();
+    public void OnFallRight() => _onFallRight?.Invoke();
+    public void OnFallLeft() => _onFallLeft?.Invoke();
+    public void OnTof() => _onTof?.Invoke();
+}
+
+/// <summary>
+/// Android平台的机器人控制服务实现
+/// 使用真实的Robot SDK绑定库
+/// </summary>
+public class AndroidRobotControlService : IRobotControlService
+{
+    private readonly ILogger<AndroidRobotControlService> _logger;
+    private readonly Context _context;
+    private bool _isInitialized = false;
+    private bool _sensorMonitoringActive = false;
+    private bool _motorEnabled = false;
+
+    // 真实的Robot SDK对象
+    private RobotService? _robotService;
+    private SensorCallbackImpl? _sensorCallback;
+
+    public AndroidRobotControlService(ILogger<AndroidRobotControlService> logger)
+    {
+        _logger = logger;
+        _context = Platform.CurrentActivity?.ApplicationContext ?? AndroidApp.Context;
+    }
+
+    public bool IsServiceAvailable => _isInitialized;
+
+    #region 事件定义
+    public event EventHandler? TapDetected;
+    public event EventHandler? DoubleTapDetected;
+    public event EventHandler? LongPressDetected;
+    public event EventHandler? FallBackwardDetected;
+    public event EventHandler? FallForwardDetected;
+    public event EventHandler? FallRightDetected;
+    public event EventHandler? FallLeftDetected;
+    public event EventHandler? TofDetected;
+    #endregion
+
+    public async Task<bool> InitializeAsync()
+    {
+        try
+        {
+            _logger.LogInformation("初始化Android机器人服务...");
+
+            // 获取RobotService实例
+            _robotService = RobotService.GetInstance(_context);
+            
+            // 创建传感器回调
+            _sensorCallback = new SensorCallbackImpl(
+                onTap: () => TapDetected?.Invoke(this, EventArgs.Empty),
+                onDoubleTap: () => DoubleTapDetected?.Invoke(this, EventArgs.Empty),
+                onLongPress: () => LongPressDetected?.Invoke(this, EventArgs.Empty),
+                onFallBackward: () => FallBackwardDetected?.Invoke(this, EventArgs.Empty),
+                onFallForward: () => FallForwardDetected?.Invoke(this, EventArgs.Empty),
+                onFallRight: () => FallRightDetected?.Invoke(this, EventArgs.Empty),
+                onFallLeft: () => FallLeftDetected?.Invoke(this, EventArgs.Empty),
+                onTof: () => TofDetected?.Invoke(this, EventArgs.Empty)
+            );
+
+            // 模拟等待连接
+            await Task.Delay(1000);
+
+            _isInitialized = true;
+            _logger.LogInformation("Android机器人服务初始化成功");
+            return true;
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "初始化Android机器人服务失败");
+            return false;
+        }
+    }
+
+    #region 传感器控制
+    public async Task StartSensorMonitoringAsync()
+    {
+        try
+        {
+            if (!_isInitialized || _robotService == null)
+            {
+                _logger.LogWarning("服务未初始化，无法启动传感器监听");
+                return;
+            }
+
+            _logger.LogInformation("启动传感器监听...");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotRegisterSensorCallback(_sensorCallback);
+            _robotService.RobotOpenSensor();
+
+            await Task.Delay(500);
+            _sensorMonitoringActive = true;
+            _logger.LogInformation("传感器监听已启动");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "启动传感器监听失败");
+        }
+    }
+
+    public async Task StopSensorMonitoringAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation("停止传感器监听...");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotUnregisterSensor();
+            _robotService.RobotCloseSensor();
+
+            await Task.Delay(200);
+            _sensorMonitoringActive = false;
+            _logger.LogInformation("传感器监听已停止");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "停止传感器监听失败");
+        }
+    }
+    #endregion
+
+    #region 电机控制
+    public async Task EnableMotorAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation("启用电机...");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotOpenMotor();
+
+            await Task.Delay(500);
+            _motorEnabled = true;
+            _logger.LogInformation("电机已启用");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "启用电机失败");
+        }
+    }
+
+    public async Task DisableMotorAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation("禁用电机...");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotCloseMotor();
+
+            await Task.Delay(200);
+            _motorEnabled = false;
+            _logger.LogInformation("电机已禁用");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "禁用电机失败");
+        }
+    }
+    #endregion
+
+    #region 动作控制
+    public async Task MoveForwardAsync(int speed = 50, int steps = 1)
+    {
+        await PerformActionAsync(RobotActionCommands.MoveForward, speed, steps);
+    }
+
+    public async Task MoveBackwardAsync(int speed = 50, int steps = 1)
+    {
+        await PerformActionAsync(RobotActionCommands.WalkBackward, speed, steps);
+    }
+
+    public async Task TurnLeftAsync(int speed = 50, int steps = 1)
+    {
+        await PerformActionAsync(RobotActionCommands.TurnLeft, speed, steps);
+    }
+
+    public async Task TurnRightAsync(int speed = 50, int steps = 1)
+    {
+        await PerformActionAsync(RobotActionCommands.GoRight, speed, steps);
+    }
+
+    public async Task PerformActionAsync(int actionNumber, int speed = 50, int steps = 1)
+    {
+        try
+        {
+            if (!_motorEnabled || _robotService == null)
+            {
+                _logger.LogWarning("电机未启用或服务未初始化，无法执行动作");
+                return;
+            }
+
+            _logger.LogInformation($"执行动作: {actionNumber}, 速度: {speed}, 步数: {steps}");
+
+            // 使用真实的Robot SDK API
+            var actionMessage = new ActionMessage();
+            actionMessage.Set(actionNumber, speed, steps);
+            _robotService.RobotActionCommand(actionMessage);
+
+            // 等待动作完成
+            await Task.Delay(1000);
+            _logger.LogInformation($"动作 {actionNumber} 执行完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, $"执行动作 {actionNumber} 失败");
+        }
+    }
+    #endregion
+
+    #region 天线控制
+    public async Task MoveAntennaAsync(int cmd, int step, int speed, int angle)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"控制天线运动: cmd={cmd}, step={step}, speed={speed}, angle={angle}");
+
+            // 使用真实的Robot SDK API
+            var antennaMessage = new AntennaMessage();
+            antennaMessage.Set(cmd, step, speed, angle);
+            _robotService.RobotAntennaMotion(antennaMessage);
+
+            await Task.Delay(800);
+            _logger.LogInformation("天线运动完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "控制天线运动失败");
+        }
+    }
+
+    public async Task SetAntennaLightAsync(int color)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"设置天线灯光颜色: 0x{color:X6}");
+
+            // 使用真实的Robot SDK API
+            var lightMessage = new AntennaLightMessage();
+            lightMessage.Set(color);
+            _robotService.RobotAntennaLight(lightMessage);
+
+            await Task.Delay(200);
+            _logger.LogInformation("天线灯光设置完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "设置天线灯光失败");
+        }
+    }
+
+    public async Task TurnOffAntennaLightAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation("关闭天线灯光");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotCloseAntennaLight();
+
+            await Task.Delay(200);
+            _logger.LogInformation("天线灯光已关闭");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "关闭天线灯光失败");
+        }
+    }
+    #endregion
+
+    #region 语音和表情
+    public async Task SpeakAsync(string text)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"播放TTS: {text}");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotPlayTTs(text);
+
+            // 模拟TTS播放时间
+            await Task.Delay(text.Length * 100);
+            _logger.LogInformation("TTS播放完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "播放TTS失败");
+        }
+    }
+
+    public async Task ShowExpressionAsync(string expression)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"显示表情: {expression}");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotStartExpression(expression);
+
+            await Task.Delay(300);
+            _logger.LogInformation($"表情 {expression} 显示完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "显示表情失败");
+        }
+    }
+
+    public async Task StopExpressionAsync()
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation("停止表情");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotStopExpression();
+
+            await Task.Delay(200);
+            _logger.LogInformation("表情已停止");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "停止表情失败");
+        }
+    }
+
+    public async Task SpeakWithExpressionAsync(string text, string expression)
+    {
+        try
+        {
+            // 先显示表情
+            await ShowExpressionAsync(expression);
+            
+            // 再播放语音
+            await SpeakAsync(text);
+            
+            // 延迟后停止表情
+            await Task.Delay(500);
+            await StopExpressionAsync();
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "播放语音和表情失败");
+        }
+    }
+    #endregion
+
+    #region 状态栏控制
+    public async Task ControlStatusBarAsync(string statusBarData)
+    {
+        try
+        {
+            if (_robotService == null)
+            {
+                _logger.LogWarning("RobotService未初始化");
+                return;
+            }
+
+            _logger.LogInformation($"控制状态栏: {statusBarData}");
+
+            // 使用真实的Robot SDK API
+            _robotService.RobotControlStatusBar(statusBarData);
+
+            await Task.Delay(200);
+            _logger.LogInformation("状态栏控制完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "控制状态栏失败");
+        }
+    }
+    #endregion
+
+    #region 资源清理
+    public async Task DisposeAsync()
+    {
+        try
+        {
+            _logger.LogInformation("清理机器人服务资源...");
+
+            await StopSensorMonitoringAsync();
+            await DisableMotorAsync();
+            await TurnOffAntennaLightAsync();
+            await StopExpressionAsync();
+
+            // 使用真实的Robot SDK API
+            _robotService?.UnbindService();
+
+            _isInitialized = false;
+            _logger.LogInformation("机器人服务资源清理完成");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "清理机器人服务资源失败");
+        }
+    }
+    #endregion
+}
