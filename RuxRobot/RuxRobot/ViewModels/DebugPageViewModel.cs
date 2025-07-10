@@ -40,6 +40,8 @@ public class DebugPageViewModel : INotifyPropertyChanged
         {
             _isConnected = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(ConnectionStatusText));
+            OnPropertyChanged(nameof(ConnectionStatusColor));
             ((Command)TestForwardActionsCommand).ChangeCanExecute();
             ((Command)TestParameterCombinationsCommand).ChangeCanExecute();
             ((Command)InitializeRobotCommand).ChangeCanExecute();
@@ -53,10 +55,18 @@ public class DebugPageViewModel : INotifyPropertyChanged
         {
             _isTesting = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(TestingStatusText));
+            OnPropertyChanged(nameof(TestingStatusColor));
             ((Command)TestForwardActionsCommand).ChangeCanExecute();
             ((Command)TestParameterCombinationsCommand).ChangeCanExecute();
         }
     }
+
+    public string ConnectionStatusText => IsConnected ? "✅ 已连接" : "❌ 未连接";
+    public Color ConnectionStatusColor => IsConnected ? Colors.Green : Colors.Red;
+    
+    public string TestingStatusText => IsTesting ? "🧪 测试中..." : "⏸️ 就绪";
+    public Color TestingStatusColor => IsTesting ? Colors.Orange : Colors.Gray;
     #endregion
 
     #region 命令
@@ -168,9 +178,9 @@ public class DebugPageViewModel : INotifyPropertyChanged
     #endregion
 
     #region INotifyPropertyChanged
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
