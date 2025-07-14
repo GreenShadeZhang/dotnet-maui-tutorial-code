@@ -1,0 +1,1210 @@
+[
+    {
+        "cmd_tag": "h0059",
+        "cmd_tag_name": "常规环"
+    },
+    {
+        "cmd_tag": "h0060",
+        "cmd_tag_name": "笑容环"
+    },
+    {
+        "cmd_tag": "h0058",
+        "cmd_tag_name": "皱眉环"
+    },
+    {
+        "cmd_tag": "h0006",
+        "cmd_tag_name": "大笑"
+    },
+    {
+        "cmd_tag": "h0027",
+        "cmd_tag_name": "爱心"
+    },
+    {
+        "cmd_tag": "h0017",
+        "cmd_tag_name": "皱眉"
+    },
+    {
+        "cmd_tag": "h0007",
+        "cmd_tag_name": "大小眼"
+    },
+    {
+        "cmd_tag": "h0010",
+        "cmd_tag_name": "哭泣1"
+    },
+    {
+        "cmd_tag": "h0011",
+        "cmd_tag_name": "眩晕"
+    },
+    {
+        "cmd_tag": "h0016",
+        "cmd_tag_name": "害怕"
+    },
+    {
+        "cmd_tag": "h0034",
+        "cmd_tag_name": "摇头"
+    },
+    {
+        "cmd_tag": "h0076",
+        "cmd_tag_name": "左上看"
+    },
+    {
+        "cmd_tag": "h0024",
+        "cmd_tag_name": "左倾听"
+    },
+    {
+        "cmd_tag": "h0061",
+        "cmd_tag_name": "斜看"
+    },
+    {
+        "cmd_tag": "h0001",
+        "cmd_tag_name": "愤怒"
+    },
+    {
+        "cmd_tag": "h0002",
+        "cmd_tag_name": "傲慢"
+    },
+    {
+        "cmd_tag": "h0003",
+        "cmd_tag_name": "汗颜"
+    },
+    {
+        "cmd_tag": "h0004",
+        "cmd_tag_name": "睡着"
+    },
+    {
+        "cmd_tag": "h0005",
+        "cmd_tag_name": "芭比Q"
+    },
+    {
+        "cmd_tag": "h0008",
+        "cmd_tag_name": "闹钟"
+    },
+    {
+        "cmd_tag": "h0009",
+        "cmd_tag_name": "疑惑"
+    },
+    {
+        "cmd_tag": "h0012",
+        "cmd_tag_name": "睁眼睡"
+    },
+    {
+        "cmd_tag": "h0013",
+        "cmd_tag_name": "邪笑"
+    },
+    {
+        "cmd_tag": "h0014",
+        "cmd_tag_name": "嫉妒"
+    },
+    {
+        "cmd_tag": "h0015",
+        "cmd_tag_name": "期待"
+    },
+    {
+        "cmd_tag": "h0018",
+        "cmd_tag_name": "狂怒"
+    },
+    {
+        "cmd_tag": "h0019",
+        "cmd_tag_name": "左右看"
+    },
+    {
+        "cmd_tag": "h0020",
+        "cmd_tag_name": "快乐"
+    },
+    {
+        "cmd_tag": "h0021",
+        "cmd_tag_name": "无奈"
+    },
+    {
+        "cmd_tag": "h0022",
+        "cmd_tag_name": "无奈1"
+    },
+    {
+        "cmd_tag": "h0023",
+        "cmd_tag_name": "无奈2"
+    },
+    {
+        "cmd_tag": "h0025",
+        "cmd_tag_name": "右倾听"
+    },
+    {
+        "cmd_tag": "h0026",
+        "cmd_tag_name": "向下看"
+    },
+    {
+        "cmd_tag": "h0028",
+        "cmd_tag_name": "疼"
+    },
+    {
+        "cmd_tag": "h0029",
+        "cmd_tag_name": "喘气"
+    },
+    {
+        "cmd_tag": "h0030",
+        "cmd_tag_name": "偷看"
+    },
+    {
+        "cmd_tag": "h0031",
+        "cmd_tag_name": "偷看1"
+    },
+    {
+        "cmd_tag": "h0032",
+        "cmd_tag_name": "拍照"
+    },
+    {
+        "cmd_tag": "h0033",
+        "cmd_tag_name": "抗拒"
+    },
+    {
+        "cmd_tag": "h0035",
+        "cmd_tag_name": "闭嘴"
+    },
+    {
+        "cmd_tag": "h0036",
+        "cmd_tag_name": "单眨眼"
+    },
+    {
+        "cmd_tag": "h0037",
+        "cmd_tag_name": "单眨眼1"
+    },
+    {
+        "cmd_tag": "h0038",
+        "cmd_tag_name": "单眨眼2"
+    },
+    {
+        "cmd_tag": "h0039",
+        "cmd_tag_name": "睡觉"
+    },
+    {
+        "cmd_tag": "h0040",
+        "cmd_tag_name": "抱歉"
+    },
+    {
+        "cmd_tag": "h0041",
+        "cmd_tag_name": "眯眼"
+    },
+    {
+        "cmd_tag": "h0042",
+        "cmd_tag_name": "左下斜"
+    },
+    {
+        "cmd_tag": "h0043",
+        "cmd_tag_name": "左上斜"
+    },
+    {
+        "cmd_tag": "h0044",
+        "cmd_tag_name": "右下斜"
+    },
+    {
+        "cmd_tag": "h0045",
+        "cmd_tag_name": "右上斜"
+    },
+    {
+        "cmd_tag": "h0046",
+        "cmd_tag_name": "惊讶"
+    },
+    {
+        "cmd_tag": "h0047",
+        "cmd_tag_name": "惊讶2"
+    },
+    {
+        "cmd_tag": "h0048",
+        "cmd_tag_name": "怀疑"
+    },
+    {
+        "cmd_tag": "h0049",
+        "cmd_tag_name": "怀疑2"
+    },
+    {
+        "cmd_tag": "h0050",
+        "cmd_tag_name": "思考"
+    },
+    {
+        "cmd_tag": "h0051",
+        "cmd_tag_name": "发抖"
+    },
+    {
+        "cmd_tag": "h0052",
+        "cmd_tag_name": "难受"
+    },
+    {
+        "cmd_tag": "h0053",
+        "cmd_tag_name": "起床气"
+    },
+    {
+        "cmd_tag": "h0054",
+        "cmd_tag_name": "委屈"
+    },
+    {
+        "cmd_tag": "h0055",
+        "cmd_tag_name": "打哈欠"
+    },
+    {
+        "cmd_tag": "h0056",
+        "cmd_tag_name": "哭泣"
+    },
+    {
+        "cmd_tag": "h0057",
+        "cmd_tag_name": "左右看"
+    },
+    {
+        "cmd_tag": "h0062",
+        "cmd_tag_name": "回正白"
+    },
+    {
+        "cmd_tag": "h0063",
+        "cmd_tag_name": "回正黄"
+    },
+    {
+        "cmd_tag": "h0064",
+        "cmd_tag_name": "吃香蕉"
+    },
+    {
+        "cmd_tag": "h0065",
+        "cmd_tag_name": "汽车"
+    },
+    {
+        "cmd_tag": "h0066",
+        "cmd_tag_name": "对话"
+    },
+    {
+        "cmd_tag": "h0067",
+        "cmd_tag_name": "云朵"
+    },
+    {
+        "cmd_tag": "h0068",
+        "cmd_tag_name": "喝果汁"
+    },
+    {
+        "cmd_tag": "h0069",
+        "cmd_tag_name": "看书"
+    },
+    {
+        "cmd_tag": "h0070",
+        "cmd_tag_name": "吃面"
+    },
+    {
+        "cmd_tag": "h0071",
+        "cmd_tag_name": "喷图"
+    },
+    {
+        "cmd_tag": "h0072",
+        "cmd_tag_name": "弹球"
+    },
+    {
+        "cmd_tag": "h0073",
+        "cmd_tag_name": "踢球"
+    },
+    {
+        "cmd_tag": "h0074",
+        "cmd_tag_name": "俄罗斯"
+    },
+    {
+        "cmd_tag": "h0075",
+        "cmd_tag_name": "打字"
+    },
+    {
+        "cmd_tag": "h0077",
+        "cmd_tag_name": "举铁"
+    },
+    {
+        "cmd_tag": "h0078",
+        "cmd_tag_name": "更好自己"
+    },
+    {
+        "cmd_tag": "h0079",
+        "cmd_tag_name": "紫GPT1"
+    },
+    {
+        "cmd_tag": "h0080",
+        "cmd_tag_name": "紫GPT2"
+    },
+    {
+        "cmd_tag": "h0081",
+        "cmd_tag_name": "紫GPT3"
+    },
+    {
+        "cmd_tag": "h0082",
+        "cmd_tag_name": "紫GPT4"
+    },
+    {
+        "cmd_tag": "h0083",
+        "cmd_tag_name": "绿GPT1"
+    },
+    {
+        "cmd_tag": "h0084",
+        "cmd_tag_name": "绿GPT2"
+    },
+    {
+        "cmd_tag": "h0085",
+        "cmd_tag_name": "绿GPT3"
+    },
+    {
+        "cmd_tag": "h0086",
+        "cmd_tag_name": "绿GPT4"
+    },
+    {
+        "cmd_tag": "h0087",
+        "cmd_tag_name": "生日快乐"
+    },
+    {
+        "cmd_tag": "h0088",
+        "cmd_tag_name": "紫GPT1"
+    },
+    {
+        "cmd_tag": "h0089",
+        "cmd_tag_name": "紫GPT2"
+    },
+    {
+        "cmd_tag": "h0090",
+        "cmd_tag_name": "紫GPT3"
+    },
+    {
+        "cmd_tag": "h0091",
+        "cmd_tag_name": "紫GPT4"
+    },
+    {
+        "cmd_tag": "h0092",
+        "cmd_tag_name": "紫GPT听"
+    },
+    {
+        "cmd_tag": "h0093",
+        "cmd_tag_name": "猜拳计时"
+    },
+    {
+        "cmd_tag": "h0094",
+        "cmd_tag_name": "布赢"
+    },
+    {
+        "cmd_tag": "h0095",
+        "cmd_tag_name": "剪刀赢"
+    },
+    {
+        "cmd_tag": "h0096",
+        "cmd_tag_name": "剪刀输"
+    },
+    {
+        "cmd_tag": "h0097",
+        "cmd_tag_name": "打呼噜"
+    },
+    {
+        "cmd_tag": "h0098",
+        "cmd_tag_name": "语音听"
+    },
+    {
+        "cmd_tag": "h0099",
+        "cmd_tag_name": "感到热"
+    },
+    {
+        "cmd_tag": "h0100",
+        "cmd_tag_name": "烹饪完成"
+    },
+    {
+        "cmd_tag": "h0101",
+        "cmd_tag_name": "燃气警报"
+    },
+    {
+        "cmd_tag": "h0102",
+        "cmd_tag_name": "浸水警报"
+    },
+    {
+        "cmd_tag": "h0103",
+        "cmd_tag_name": "烟雾警报"
+    },
+    {
+        "cmd_tag": "h0104",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0105",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0106",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0107",
+        "cmd_tag_name": "白GPT听"
+    },
+    {
+        "cmd_tag": "h0108",
+        "cmd_tag_name": "白色环顾"
+    },
+    {
+        "cmd_tag": "h0109",
+        "cmd_tag_name": "白GPT听"
+    },
+    {
+        "cmd_tag": "h0110",
+        "cmd_tag_name": "星火说"
+    },
+    {
+        "cmd_tag": "h0111",
+        "cmd_tag_name": "星火说2"
+    },
+    {
+        "cmd_tag": "h0112",
+        "cmd_tag_name": "星火说3"
+    },
+    {
+        "cmd_tag": "h0113",
+        "cmd_tag_name": "星火说4"
+    },
+    {
+        "cmd_tag": "h0114",
+        "cmd_tag_name": "星火听"
+    },
+    {
+        "cmd_tag": "h0115",
+        "cmd_tag_name": "666"
+    },
+    {
+        "cmd_tag": "h0116",
+        "cmd_tag_name": "比心"
+    },
+    {
+        "cmd_tag": "h0117",
+        "cmd_tag_name": "good"
+    },
+    {
+        "cmd_tag": "h0118",
+        "cmd_tag_name": "害羞"
+    },
+    {
+        "cmd_tag": "h0119",
+        "cmd_tag_name": "哭泣"
+    },
+    {
+        "cmd_tag": "h0120",
+        "cmd_tag_name": "飘过云"
+    },
+    {
+        "cmd_tag": "h0121",
+        "cmd_tag_name": "give me five"
+    },
+    {
+        "cmd_tag": "h0122",
+        "cmd_tag_name": "砸玻璃"
+    },
+    {
+        "cmd_tag": "h0123",
+        "cmd_tag_name": "愚公移山"
+    },
+    {
+        "cmd_tag": "h0124",
+        "cmd_tag_name": "香蕉皮"
+    },
+    {
+        "cmd_tag": "h0125",
+        "cmd_tag_name": "右看"
+    },
+    {
+        "cmd_tag": "h0126",
+        "cmd_tag_name": "左看"
+    },
+    {
+        "cmd_tag": "h0127",
+        "cmd_tag_name": "选择题"
+    },
+    {
+        "cmd_tag": "h0128",
+        "cmd_tag_name": "Rock"
+    },
+    {
+        "cmd_tag": "h0129",
+        "cmd_tag_name": "点头"
+    },
+    {
+        "cmd_tag": "h0130",
+        "cmd_tag_name": "ok"
+    },
+    {
+        "cmd_tag": "h0131",
+        "cmd_tag_name": "V5"
+    },
+    {
+        "cmd_tag": "h0132",
+        "cmd_tag_name": "听声波"
+    },
+    {
+        "cmd_tag": "h0133",
+        "cmd_tag_name": "害怕"
+    },
+    {
+        "cmd_tag": "h0134",
+        "cmd_tag_name": "听歌星光"
+    },
+    {
+        "cmd_tag": "h0135",
+        "cmd_tag_name": "低头看"
+    },
+    {
+        "cmd_tag": "h0136",
+        "cmd_tag_name": "东张西望"
+    },
+    {
+        "cmd_tag": "h0137",
+        "cmd_tag_name": "瞎看"
+    },
+    {
+        "cmd_tag": "h0138",
+        "cmd_tag_name": "偷看"
+    },
+    {
+        "cmd_tag": "h0139",
+        "cmd_tag_name": "抖机灵"
+    },
+    {
+        "cmd_tag": "h0140",
+        "cmd_tag_name": "眨眼笑"
+    },
+    {
+        "cmd_tag": "h0141",
+        "cmd_tag_name": "眨眼笑2"
+    },
+    {
+        "cmd_tag": "h0142",
+        "cmd_tag_name": "惊呆"
+    },
+    {
+        "cmd_tag": "h0143",
+        "cmd_tag_name": "眯眼看"
+    },
+    {
+        "cmd_tag": "h0144",
+        "cmd_tag_name": "想笑"
+    },
+    {
+        "cmd_tag": "h0145",
+        "cmd_tag_name": "想笑2"
+    },
+    {
+        "cmd_tag": "h0146",
+        "cmd_tag_name": "想笑3"
+    },
+    {
+        "cmd_tag": "h0147",
+        "cmd_tag_name": "想笑4"
+    },
+    {
+        "cmd_tag": "h0148",
+        "cmd_tag_name": "惊呆2"
+    },
+    {
+        "cmd_tag": "h0149",
+        "cmd_tag_name": "想一想"
+    },
+    {
+        "cmd_tag": "h0150",
+        "cmd_tag_name": "笑看天下"
+    },
+    {
+        "cmd_tag": "h0151",
+        "cmd_tag_name": "偷看2"
+    },
+    {
+        "cmd_tag": "h0152",
+        "cmd_tag_name": "斜看"
+    },
+    {
+        "cmd_tag": "h0153",
+        "cmd_tag_name": "左右看看"
+    },
+    {
+        "cmd_tag": "h0154",
+        "cmd_tag_name": "偷看3"
+    },
+    {
+        "cmd_tag": "h0155",
+        "cmd_tag_name": "瞅一瞅"
+    },
+    {
+        "cmd_tag": "h0156",
+        "cmd_tag_name": "眨眼"
+    },
+    {
+        "cmd_tag": "h0157",
+        "cmd_tag_name": "瞪眼"
+    },
+    {
+        "cmd_tag": "h0158",
+        "cmd_tag_name": "瞪眼看"
+    },
+    {
+        "cmd_tag": "h0159",
+        "cmd_tag_name": "瞅右边"
+    },
+    {
+        "cmd_tag": "h0160",
+        "cmd_tag_name": "瞪大眼"
+    },
+    {
+        "cmd_tag": "h0161",
+        "cmd_tag_name": "瞅右边2"
+    },
+    {
+        "cmd_tag": "h0162",
+        "cmd_tag_name": "悄悄看"
+    },
+    {
+        "cmd_tag": "h0163",
+        "cmd_tag_name": "扫视"
+    },
+    {
+        "cmd_tag": "h0164",
+        "cmd_tag_name": "瞪大眼2"
+    },
+    {
+        "cmd_tag": "h0165",
+        "cmd_tag_name": "瞅右边3"
+    },
+    {
+        "cmd_tag": "h0166",
+        "cmd_tag_name": "瞅右边4"
+    },
+    {
+        "cmd_tag": "h0167",
+        "cmd_tag_name": "瞅右边5"
+    },
+    {
+        "cmd_tag": "h0168",
+        "cmd_tag_name": "瞅右边6"
+    },
+    {
+        "cmd_tag": "h0169",
+        "cmd_tag_name": "瞅右边7"
+    },
+    {
+        "cmd_tag": "h0170",
+        "cmd_tag_name": "考虑"
+    },
+    {
+        "cmd_tag": "h0171",
+        "cmd_tag_name": "眨眼2"
+    },
+    {
+        "cmd_tag": "h0172",
+        "cmd_tag_name": "瞪眼4"
+    },
+    {
+        "cmd_tag": "h0173",
+        "cmd_tag_name": "眨眼笑3"
+    },
+    {
+        "cmd_tag": "h0174",
+        "cmd_tag_name": "超左看"
+    },
+    {
+        "cmd_tag": "h0175",
+        "cmd_tag_name": "眨眼3"
+    },
+    {
+        "cmd_tag": "h0176",
+        "cmd_tag_name": "眨眼4"
+    },
+    {
+        "cmd_tag": "h0177",
+        "cmd_tag_name": "收音"
+    },
+    {
+        "cmd_tag": "h0178",
+        "cmd_tag_name": "失落"
+    },
+    {
+        "cmd_tag": "h0179",
+        "cmd_tag_name": "偷看2"
+    },
+    {
+        "cmd_tag": "h0180",
+        "cmd_tag_name": "语音听"
+    },
+    {
+        "cmd_tag": "h0181",
+        "cmd_tag_name": "语音思考"
+    },
+    {
+        "cmd_tag": "h0182",
+        "cmd_tag_name": "拍照"
+    },
+    {
+        "cmd_tag": "h0183",
+        "cmd_tag_name": "紫GPT思考"
+    },
+    {
+        "cmd_tag": "h0184",
+        "cmd_tag_name": "紫GPT听"
+    },
+    {
+        "cmd_tag": "h0185",
+        "cmd_tag_name": "星火听"
+    },
+    {
+        "cmd_tag": "h0186",
+        "cmd_tag_name": "星火思考"
+    },
+    {
+        "cmd_tag": "h0187",
+        "cmd_tag_name": "看手势"
+    },
+    {
+        "cmd_tag": "h0188",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0189",
+        "cmd_tag_name": "摸头"
+    },
+    {
+        "cmd_tag": "h0190",
+        "cmd_tag_name": "拍头"
+    },
+    {
+        "cmd_tag": "h0191",
+        "cmd_tag_name": "长按头"
+    },
+    {
+        "cmd_tag": "h0192",
+        "cmd_tag_name": "障碍"
+    },
+    {
+        "cmd_tag": "h0193",
+        "cmd_tag_name": "障碍2"
+    },
+    {
+        "cmd_tag": "h0194",
+        "cmd_tag_name": "障碍3"
+    },
+    {
+        "cmd_tag": "h0195",
+        "cmd_tag_name": "障碍4"
+    },
+    {
+        "cmd_tag": "h0196",
+        "cmd_tag_name": "挣扎"
+    },
+    {
+        "cmd_tag": "h0197",
+        "cmd_tag_name": "左右扫"
+    },
+    {
+        "cmd_tag": "h0198",
+        "cmd_tag_name": "瞪眼看"
+    },
+    {
+        "cmd_tag": "h0199",
+        "cmd_tag_name": "瞪左看"
+    },
+    {
+        "cmd_tag": "h0200",
+        "cmd_tag_name": "瞪左看2"
+    },
+    {
+        "cmd_tag": "h0201",
+        "cmd_tag_name": "跳看"
+    },
+    {
+        "cmd_tag": "h0202",
+        "cmd_tag_name": "朝左看2"
+    },
+    {
+        "cmd_tag": "h0203",
+        "cmd_tag_name": "朝左看3"
+    },
+    {
+        "cmd_tag": "h0204",
+        "cmd_tag_name": "生日快乐2"
+    },
+    {
+        "cmd_tag": "h0205",
+        "cmd_tag_name": "能做什么"
+    },
+    {
+        "cmd_tag": "h0206",
+        "cmd_tag_name": "奸笑"
+    },
+    {
+        "cmd_tag": "h0207",
+        "cmd_tag_name": "奸笑2"
+    },
+    {
+        "cmd_tag": "h0208",
+        "cmd_tag_name": "右拽拽"
+    },
+    {
+        "cmd_tag": "h0209",
+        "cmd_tag_name": "左拽拽"
+    },
+    {
+        "cmd_tag": "h0210",
+        "cmd_tag_name": "大笑"
+    },
+    {
+        "cmd_tag": "h0211",
+        "cmd_tag_name": "伤心2"
+    },
+    {
+        "cmd_tag": "h0212",
+        "cmd_tag_name": "弹吉他"
+    },
+    {
+        "cmd_tag": "h0213",
+        "cmd_tag_name": "不错"
+    },
+    {
+        "cmd_tag": "h0214",
+        "cmd_tag_name": "嘿嘿嘿"
+    },
+    {
+        "cmd_tag": "h0215",
+        "cmd_tag_name": "眨眼"
+    },
+    {
+        "cmd_tag": "h0216",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0217",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0218",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0219",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0220",
+        "cmd_tag_name": "低电量"
+    },
+    {
+        "cmd_tag": "h0221",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0222",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0223",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0224",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0225",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0226",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0227",
+        "cmd_tag_name": "监控中"
+    },
+    {
+        "cmd_tag": "h0228",
+        "cmd_tag_name": "文心思考"
+    },
+    {
+        "cmd_tag": "h0229",
+        "cmd_tag_name": "文心说"
+    },
+    {
+        "cmd_tag": "h0230",
+        "cmd_tag_name": "文心说2"
+    },
+    {
+        "cmd_tag": "h0231",
+        "cmd_tag_name": "文心说3"
+    },
+    {
+        "cmd_tag": "h0232",
+        "cmd_tag_name": "文心说4"
+    },
+    {
+        "cmd_tag": "h0233",
+        "cmd_tag_name": "文心听"
+    },
+    {
+        "cmd_tag": "h0234",
+        "cmd_tag_name": "该喝水"
+    },
+    {
+        "cmd_tag": "h0235",
+        "cmd_tag_name": "该运动"
+    },
+    {
+        "cmd_tag": "h0236",
+        "cmd_tag_name": "该健身"
+    },
+    {
+        "cmd_tag": "h0237",
+        "cmd_tag_name": "注意坐姿"
+    },
+    {
+        "cmd_tag": "h0238",
+        "cmd_tag_name": "该喝水2"
+    },
+    {
+        "cmd_tag": "h0239",
+        "cmd_tag_name": "该运动2"
+    },
+    {
+        "cmd_tag": "h0240",
+        "cmd_tag_name": "该健身2"
+    },
+    {
+        "cmd_tag": "h0241",
+        "cmd_tag_name": "注意坐姿2"
+    },
+    {
+        "cmd_tag": "h0242",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0243",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0244",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0245",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0246",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0247",
+        "cmd_tag_name": "要提醒了"
+    },
+    {
+        "cmd_tag": "h0248",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0249",
+        "cmd_tag_name": "无"
+    },
+    {
+        "cmd_tag": "h0250",
+        "cmd_tag_name": "鸟叫"
+    },
+    {
+        "cmd_tag": "h0251",
+        "cmd_tag_name": "老虎叫"
+    },
+    {
+        "cmd_tag": "h0252",
+        "cmd_tag_name": "豹子叫"
+    },
+    {
+        "cmd_tag": "h0253",
+        "cmd_tag_name": "狮子叫"
+    },
+    {
+        "cmd_tag": "h0254",
+        "cmd_tag_name": "猪叫"
+    },
+    {
+        "cmd_tag": "h0255",
+        "cmd_tag_name": "羊叫"
+    },
+    {
+        "cmd_tag": "h0256",
+        "cmd_tag_name": "小狗叫"
+    },
+    {
+        "cmd_tag": "h0257",
+        "cmd_tag_name": "牛叫"
+    },
+    {
+        "cmd_tag": "h0258",
+        "cmd_tag_name": "狼叫"
+    },
+    {
+        "cmd_tag": "h0259",
+        "cmd_tag_name": "苍蝇叫"
+    },
+    {
+        "cmd_tag": "h0260",
+        "cmd_tag_name": "蚊子叫"
+    },
+    {
+        "cmd_tag": "h0261",
+        "cmd_tag_name": "蜜蜂叫"
+    },
+    {
+        "cmd_tag": "h0262",
+        "cmd_tag_name": "知了叫"
+    },
+    {
+        "cmd_tag": "h0263",
+        "cmd_tag_name": "青蛙叫"
+    },
+    {
+        "cmd_tag": "h0264",
+        "cmd_tag_name": "马叫"
+    },
+    {
+        "cmd_tag": "h0265",
+        "cmd_tag_name": "公鸡打鸣"
+    },
+    {
+        "cmd_tag": "h0266",
+        "cmd_tag_name": "猫叫"
+    },
+    {
+        "cmd_tag": "h0267",
+        "cmd_tag_name": "鸭子叫"
+    },
+    {
+        "cmd_tag": "h0268",
+        "cmd_tag_name": "乌鸦叫"
+    },
+    {
+        "cmd_tag": "h0269",
+        "cmd_tag_name": "大象叫"
+    },
+    {
+        "cmd_tag": "h0270",
+        "cmd_tag_name": "大鹅叫"
+    },
+    {
+        "cmd_tag": "h0271",
+        "cmd_tag_name": "老鹰叫"
+    },
+    {
+        "cmd_tag": "h0272",
+        "cmd_tag_name": "鹤叫"
+    },
+    {
+        "cmd_tag": "h0273",
+        "cmd_tag_name": "老鼠叫"
+    },
+    {
+        "cmd_tag": "h0274",
+        "cmd_tag_name": "骆驼叫"
+    },
+    {
+        "cmd_tag": "h0275",
+        "cmd_tag_name": "驴叫"
+    },
+    {
+        "cmd_tag": "h0276",
+        "cmd_tag_name": "倾听"
+    },
+    {
+        "cmd_tag": "h0277",
+        "cmd_tag_name": "蛐蛐"
+    },
+    {
+        "cmd_tag": "h0278",
+        "cmd_tag_name": "蛇叫"
+    },
+    {
+        "cmd_tag": "h0279",
+        "cmd_tag_name": "母鸡叫"
+    },
+    {
+        "cmd_tag": "h0280",
+        "cmd_tag_name": "熊叫"
+    },
+    {
+        "cmd_tag": "h0281",
+        "cmd_tag_name": "蟋蟀叫"
+    },
+    {
+        "cmd_tag": "h0282",
+        "cmd_tag_name": "蝈蝈叫"
+    },
+    {
+        "cmd_tag": "h0283",
+        "cmd_tag_name": "海豚叫"
+    },
+    {
+        "cmd_tag": "h0284",
+        "cmd_tag_name": "猴子叫"
+    },
+    {
+        "cmd_tag": "h0285",
+        "cmd_tag_name": "表演"
+    },
+    {
+        "cmd_tag": "h0286",
+        "cmd_tag_name": "BBOX"
+    },
+    {
+        "cmd_tag": "h0287",
+        "cmd_tag_name": "圣诞节"
+    },
+    {
+        "cmd_tag": "h0288",
+        "cmd_tag_name": "新年"
+    },
+    {
+        "cmd_tag": "h0289",
+        "cmd_tag_name": "复活节"
+    },
+    {
+        "cmd_tag": "h0290",
+        "cmd_tag_name": "h0290"
+    },
+    {
+        "cmd_tag": "h0291",
+        "cmd_tag_name": "h0291"
+    },
+    {
+        "cmd_tag": "h0292",
+        "cmd_tag_name": "h0292"
+    },
+    {
+        "cmd_tag": "h0293",
+        "cmd_tag_name": "h0293"
+    },
+    {
+        "cmd_tag": "h0294",
+        "cmd_tag_name": "h0294"
+    },
+    {
+        "cmd_tag": "h0295",
+        "cmd_tag_name": "h0295"
+    },
+    {
+        "cmd_tag": "h0296",
+        "cmd_tag_name": "h0296"
+    },
+    {
+        "cmd_tag": "h0297",
+        "cmd_tag_name": "h0297"
+    },
+    {
+        "cmd_tag": "h0298",
+        "cmd_tag_name": "h0298"
+    },
+    {
+        "cmd_tag": "h0299",
+        "cmd_tag_name": "h0299"
+    },
+    {
+        "cmd_tag": "h0300",
+        "cmd_tag_name": "h0300"
+    },
+    {
+        "cmd_tag": "h0301",
+        "cmd_tag_name": "h0301"
+    },
+    {
+        "cmd_tag": "h0302",
+        "cmd_tag_name": "h0302"
+    }
+]

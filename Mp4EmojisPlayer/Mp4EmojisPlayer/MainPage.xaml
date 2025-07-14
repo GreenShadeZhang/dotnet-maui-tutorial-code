@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:Mp4EmojisPlayer.Models"
+             x:Class="Mp4EmojisPlayer.MainPage"
+             Title="表情播放器">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 标题 -->
+        <Label Grid.Row="0" 
+               Text="MP4表情播放器" 
+               FontSize="24" 
+               FontAttributes="Bold"
+               HorizontalOptions="Center" 
+               Margin="0,20,0,10" />
+
+        <!-- 视频播放区域 -->
+        <Border Grid.Row="1" 
+                BackgroundColor="Black" 
+                Stroke="Gray" 
+                StrokeThickness="2"
+                Margin="20,0">
+            <toolkit:MediaElement x:Name="VideoPlayer"
+                                  Aspect="AspectFit"
+                                  ShouldAutoPlay="False"
+                                  ShouldShowPlaybackControls="False"
+                                  ShouldLoopPlayback="False"
+                                  ShouldKeepScreenOn="True"
+                                  MediaEnded="OnMediaEnded"
+                                  MediaFailed="OnMediaFailed" />
+        </Border>
+
+        <!-- 当前播放信息 -->
+        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10">
+            <Label Text="当前表情: " FontSize="16" />
+            <Label x:Name="CurrentEmotionLabel" Text="未选择" FontSize="16" FontAttributes="Bold" />
+            <ActivityIndicator x:Name="PlaybackIndicator" 
+                               IsVisible="False" 
+                               IsRunning="False" 
+                               Scale="0.8" 
+                               Margin="10,0,0,0" />
+        </StackLayout>
+
+        <!-- 情绪分类和表情选择 -->
+        <ScrollView Grid.Row="3" Margin="20,0">
+            <StackLayout x:Name="EmotionCategoriesLayout" Spacing="15">
+                <!-- 快速情绪按钮 -->
+                <Label Text="快速选择情绪:" FontSize="18" FontAttributes="Bold" />
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                    <Button Grid.Row="0" Grid.Column="0" Text="😊 开心" BackgroundColor="LightGreen" Clicked="OnQuickEmotionClicked" CommandParameter="开心快乐" />
+                    <Button Grid.Row="0" Grid.Column="1" Text="😠 愤怒" BackgroundColor="LightCoral" Clicked="OnQuickEmotionClicked" CommandParameter="生气愤怒" />
+                    <Button Grid.Row="0" Grid.Column="2" Text="😢 伤心" BackgroundColor="LightBlue" Clicked="OnQuickEmotionClicked" CommandParameter="伤心难过" />
+                    <Button Grid.Row="1" Grid.Column="0" Text="😲 惊讶" BackgroundColor="LightYellow" Clicked="OnQuickEmotionClicked" CommandParameter="惊讶疑惑" />
+                    <Button Grid.Row="1" Grid.Column="1" Text="😴 睡觉" BackgroundColor="LightGray" Clicked="OnQuickEmotionClicked" CommandParameter="睡觉休息" />
+                    <Button Grid.Row="1" Grid.Column="2" Text="🎲 随机" BackgroundColor="LightPink" Clicked="OnRandomEmotionClicked" />
+                </Grid>
+
+                <!-- 详细表情列表将在这里动态加载 -->
+                <Label Text="所有表情:" FontSize="18" FontAttributes="Bold" Margin="0,20,0,0" />
+                <CollectionView x:Name="EmotionsCollectionView" ItemsLayout="VerticalGrid, 3">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:EmotionModel">
+                            <Border Stroke="Gray" StrokeThickness="1" Margin="2">
+                                <StackLayout Padding="5">
+                                    <Label Text="{Binding DisplayName}" 
+                                           FontSize="12" 
+                                           HorizontalOptions="Center"
+                                           MaxLines="2"
+                                           LineBreakMode="WordWrap" />
+                                    <Button Text="播放" 
+                                            FontSize="10"
+                                            Padding="5,2"
+                                            Clicked="OnEmotionSelected"
+                                            CommandParameter="{Binding}" />
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- 加载指示器 -->
+        <ActivityIndicator x:Name="LoadingIndicator" 
+                           Grid.RowSpan="4"
+                           IsVisible="True"
+                           IsRunning="True"
+                           Color="Blue"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+    </Grid>
+
+</ContentPage>
