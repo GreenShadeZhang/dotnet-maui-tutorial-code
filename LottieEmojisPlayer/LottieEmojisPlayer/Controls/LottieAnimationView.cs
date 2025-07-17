@@ -1,5 +1,6 @@
 using LottieEmojisPlayer.Models;
 using SkiaSharp;
+using SkiaSharp.Resources;
 using SkiaSharp.Skottie;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
@@ -18,7 +19,6 @@ namespace LottieEmojisPlayer.Controls
         private SkiaSharp.Skottie.Animation? _animation;
         private IDispatcherTimer? _timer;
         private int _loopCount;
-        private Stream? _animationStream;
         private bool _disposedValue;
         #endregion
 
@@ -229,39 +229,44 @@ namespace LottieEmojisPlayer.Controls
         {
             try
             {
-                _animationStream?.Dispose();
-                
-                // 创建内存流的副本
-                var memoryStream = new MemoryStream();
-                stream.CopyTo(memoryStream);
-                memoryStream.Position = 0;
-                _animationStream = memoryStream;
+            // 创建内存流的副本
+            var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            memoryStream.Position = 0;
 
-                using var skStream = new SKManagedStream(memoryStream);
+            using var skStream = new SKManagedStream(memoryStream);
 
-                if (SkiaSharp.Skottie.Animation.TryCreate(skStream, out _animation))
+            // Use AnimationBuilder with DataUriResourceProvider for base64 support
+            using var dataUriProvider = new DataUriResourceProvider(preDecode: true);
+
+            _animation = SkiaSharp.Skottie.Animation
+                .CreateBuilder()
+                .SetResourceProvider(dataUriProvider)
+                .Build(skStream);
+
+            if (_animation != null)
+            {
+                _animation.Seek(0);
+                Info = new AnimationInfo(_animation.Version, _animation.Duration, _animation.Fps, _animation.InPoint, _animation.OutPoint);
+
+                _watch.Reset();
+                InitializeTimer();
+
+                if (AutoPlay || IsPlaying)
                 {
-                    _animation.Seek(0);
-                    Info = new AnimationInfo(_animation.Version, _animation.Duration, _animation.Fps, _animation.InPoint, _animation.OutPoint);
-
-                    _watch.Reset();
-                    InitializeTimer();
-
-                    if (AutoPlay || IsPlaying)
-                    {
-                        PlayAnimation();
-                    }
+                PlayAnimation();
                 }
-                else
-                {
-                    Info = new AnimationInfo(string.Empty, TimeSpan.Zero, 0, 0, 0);
-                    Debug.WriteLine("Failed to create animation from stream");
-                }
+            }
+            else
+            {
+                Info = new AnimationInfo(string.Empty, TimeSpan.Zero, 0, 0, 0);
+                Debug.WriteLine("Failed to create animation from stream");
+            }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error setting animation: {ex.Message}");
-                Info = new AnimationInfo(string.Empty, TimeSpan.Zero, 0, 0, 0);
+            Debug.WriteLine($"Error setting animation: {ex.Message}");
+            Info = new AnimationInfo(string.Empty, TimeSpan.Zero, 0, 0, 0);
             }
         }
 
@@ -336,7 +341,6 @@ namespace LottieEmojisPlayer.Controls
                     _timer?.Stop();
                     _timer = null;
                     _watch.Stop();
-                    _animationStream?.Dispose();
                     _animation?.Dispose();
                 }
 
