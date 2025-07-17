@@ -1,0 +1,9 @@
+/* App Display Name */
+"CFBundleDisplayName" = "Lottie 表情播放器";
+
+/* App Description */
+"AppDescription" = "一个用于播放Lottie表情动画的MAUI应用";
+
+/* General UI */
+"OK" = "确定";
+"Cancel" = "取消";

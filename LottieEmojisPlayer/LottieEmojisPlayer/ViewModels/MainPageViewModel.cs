@@ -1,5 +1,6 @@
 using LottieEmojisPlayer.Controls;
 using LottieEmojisPlayer.Models;
+using LottieEmojisPlayer.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -22,6 +23,10 @@ namespace LottieEmojisPlayer.ViewModels
             LottieFiles = new ObservableCollection<LottieFileItem>();
             PlayCommand = new Command(OnPlay, () => SelectedLottieFile != null);
             StopCommand = new Command(OnStop, () => SelectedLottieFile != null);
+            
+            // 订阅本地化服务的属性更改通知
+            LocalizationService.Instance.PropertyChanged += OnLocalizationChanged;
+            
             LoadLottieFilesAsync();
         }
         #endregion
@@ -225,6 +230,14 @@ namespace LottieEmojisPlayer.ViewModels
                 AnimationInfo = string.Empty;
                 IsPlaying = false;
             }
+        }
+        #endregion
+
+        #region Localization
+        private void OnLocalizationChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            // 当语言更改时，通知UI更新状态显示
+            OnPropertyChanged(nameof(IsPlaying));
         }
         #endregion
 

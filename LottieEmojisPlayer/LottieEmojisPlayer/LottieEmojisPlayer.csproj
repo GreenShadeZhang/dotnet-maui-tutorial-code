@@ -39,6 +39,9 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		
+		<!-- 暂时禁用XAML编译优化 -->
+		<!-- <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation> -->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -55,8 +58,24 @@
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
+		<!-- Platform specific resources -->
+		<AndroidResource Include="Platforms\Android\Resources\values\strings.xml" />
+		<AndroidResource Include="Platforms\Android\Resources\values-zh-rCN\strings.xml" />
+		<BundleResource Include="Platforms\iOS\Resources\Base.lproj\Localizable.strings" />
+		<BundleResource Include="Platforms\iOS\Resources\zh-Hans.lproj\Localizable.strings" />
+
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<!-- 排除自动包含的资源文件，然后手动添加 -->
+	<ItemGroup>
+		<EmbeddedResource Remove="Resources\Languages\*.resx" />
+		<EmbeddedResource Include="Resources\Languages\AppResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Languages\AppResources.zh-CN.resx" />
 	</ItemGroup>
 
 	<ItemGroup>

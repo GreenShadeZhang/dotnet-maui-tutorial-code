@@ -6,8 +6,10 @@
              xmlns:viewmodels="clr-namespace:LottieEmojisPlayer.ViewModels"
              xmlns:models="clr-namespace:LottieEmojisPlayer.Models"
              xmlns:converters="clr-namespace:LottieEmojisPlayer.Converters"
+             xmlns:ext="clr-namespace:LottieEmojisPlayer.Extensions"
+             xmlns:services="clr-namespace:LottieEmojisPlayer.Services"
              x:DataType="viewmodels:MainPageViewModel"
-             Title="Lottie 动画预览器"
+             Title="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[AppTitle]}"
              BackgroundColor="#F5F5F5">
 
     <ContentPage.BindingContext>
@@ -28,11 +30,23 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="0,0,15,15" />
             </Border.StrokeShape>
-            <Label Text="Lottie 动画预览器" 
-                   FontSize="24" 
-                   FontAttributes="Bold" 
-                   TextColor="White" 
-                   HorizontalOptions="Center" />
+            <Grid>
+                <Label Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[AppTitle]}" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                
+                <!-- 语言切换按钮 -->
+                <Button Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[Language]}"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        FontSize="12"
+                        Clicked="OnLanguageButtonClicked" />
+            </Grid>
         </Border>
 
         <!-- 主内容区域 -->
@@ -48,7 +62,7 @@
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <StackLayout>
-                        <Label Text="选择动画文件" 
+                        <Label Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[SelectAnimationFile]}" 
                                FontSize="18" 
                                FontAttributes="Bold" 
                                TextColor="#333" 
@@ -95,7 +109,7 @@
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <StackLayout>
-                        <Label Text="动画预览" 
+                        <Label Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[AnimationPreview]}" 
                                FontSize="18" 
                                FontAttributes="Bold" 
                                TextColor="#333" 
@@ -125,7 +139,7 @@
                             </Grid.ColumnDefinitions>
                             
                             <Button Grid.Column="0"
-                                    Text="播放"
+                                    Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[PlayButton]}"
                                     Command="{Binding PlayCommand}"
                                     BackgroundColor="#4CAF50"
                                     TextColor="White"
@@ -134,7 +148,7 @@
                                     HeightRequest="45" />
                             
                             <Button Grid.Column="1"
-                                    Text="停止"
+                                    Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[StopButton]}"
                                     Command="{Binding StopCommand}"
                                     BackgroundColor="#F44336"
                                     TextColor="White"
@@ -144,7 +158,7 @@
                         </Grid>
 
                         <!-- 播放状态 -->
-                        <Label Text="{Binding IsPlaying, StringFormat='状态: {0}'}" 
+                        <Label Text="{Binding IsPlaying, Converter={StaticResource LocalizedStatusConverter}}" 
                                FontSize="14" 
                                TextColor="#666" 
                                Margin="0,10,0,0"
@@ -162,7 +176,7 @@
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <StackLayout>
-                        <Label Text="动画信息" 
+                        <Label Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[AnimationInfo]}" 
                                FontSize="18" 
                                FontAttributes="Bold" 
                                TextColor="#333" 
@@ -185,7 +199,7 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="15,15,0,0" />
             </Border.StrokeShape>
-            <Label Text="基于 SkiaSharp 和 Skottie 构建" 
+            <Label Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BuiltWith]}" 
                    FontSize="12" 
                    TextColor="White" 
                    HorizontalOptions="Center" />
@@ -205,6 +219,7 @@
                                              TrueColor="#1976D2" 
                                              FalseColor="#666666" />
             <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converters:LocalizedStatusConverter x:Key="LocalizedStatusConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

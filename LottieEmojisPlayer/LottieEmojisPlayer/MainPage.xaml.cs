@@ -1,4 +1,6 @@
 ﻿using LottieEmojisPlayer.ViewModels;
+using LottieEmojisPlayer.Services;
+using System.Globalization;
 
 namespace LottieEmojisPlayer
 {
@@ -28,6 +30,38 @@ namespace LottieEmojisPlayer
                 if (_viewModel != null)
                 {
                     _viewModel.LottieView = LottieView;
+                }
+            }
+        }
+
+        private async void OnLanguageButtonClicked(object sender, EventArgs e)
+        {
+            var localizationService = LocalizationService.Instance;
+            
+            var languages = new List<string>
+            {
+                "English",
+                "中文"
+            };
+            
+            var cultures = new List<CultureInfo>
+            {
+                new CultureInfo("en"),
+                new CultureInfo("zh-CN")
+            };
+
+            var result = await DisplayActionSheet(
+                localizationService["Language"], 
+                "Cancel", 
+                null, 
+                languages.ToArray());
+
+            if (!string.IsNullOrEmpty(result) && result != "Cancel")
+            {
+                var selectedIndex = languages.IndexOf(result);
+                if (selectedIndex >= 0)
+                {
+                    localizationService.CurrentCulture = cultures[selectedIndex];
                 }
             }
         }

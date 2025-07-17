@@ -1,0 +1,9 @@
+/* App Display Name */
+"CFBundleDisplayName" = "Lottie Emojis Player";
+
+/* App Description */
+"AppDescription" = "A MAUI app for playing Lottie emoji animations";
+
+/* General UI */
+"OK" = "OK";
+"Cancel" = "Cancel";
