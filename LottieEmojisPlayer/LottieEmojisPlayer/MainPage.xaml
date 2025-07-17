@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="LottieEmojisPlayer.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:LottieEmojisPlayer.Controls"
+             xmlns:viewmodels="clr-namespace:LottieEmojisPlayer.ViewModels"
+             xmlns:converters="clr-namespace:LottieEmojisPlayer.Converters"
+             x:DataType="viewmodels:MainPageViewModel"
+             Title="Lottie 动画预览器"
+             BackgroundColor="#F5F5F5">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 标题栏 -->
+        <Border Grid.Row="0" 
+                BackgroundColor="#6200EE" 
+                Padding="20,15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,15,15" />
+            </Border.StrokeShape>
+            <Label Text="Lottie 动画预览器" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   TextColor="White" 
+                   HorizontalOptions="Center" />
+        </Border>
+
+        <!-- 主内容区域 -->
+        <ScrollView Grid.Row="1" Padding="20">
+            <StackLayout Spacing="20">
+                
+                <!-- 动画文件选择器 -->
+                <Border BackgroundColor="White" 
+                        Padding="15" 
+                        Stroke="#E0E0E0" 
+                        StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <StackLayout>
+                        <Label Text="选择动画文件" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#333" 
+                               Margin="0,0,0,10" />
+                        
+                        <CollectionView ItemsSource="{Binding LottieFiles}" 
+                                        SelectedItem="{Binding SelectedLottieFile}"
+                                        SelectionMode="Single"
+                                        HeightRequest="120">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" 
+                                                   ItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToSelectedColorConverter}}"
+                                            Stroke="{Binding IsSelected, Converter={StaticResource BoolToStrokeConverter}}"
+                                            StrokeThickness="2"
+                                            Padding="15,10"
+                                            WidthRequest="120">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Name}" 
+                                               FontSize="12" 
+                                               TextColor="{Binding IsSelected, Converter={StaticResource BoolToTextColorConverter}}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               HorizontalTextAlignment="Center"
+                                               LineBreakMode="TailTruncation" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Border>
+
+                <!-- 动画预览区域 -->
+                <Border BackgroundColor="White" 
+                        Padding="15" 
+                        Stroke="#E0E0E0" 
+                        StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <StackLayout>
+                        <Label Text="动画预览" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#333" 
+                               Margin="0,0,0,10" />
+                        
+                        <!-- Lottie 动画视图 -->
+                        <Border BackgroundColor="#F8F8F8"
+                                Stroke="#DDD"
+                                StrokeThickness="1"
+                                HeightRequest="300">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8" />
+                            </Border.StrokeShape>
+                            <controls:LottieAnimationView x:Name="LottieView"
+                                                          FilePath="{Binding SelectedLottieFile.FilePath}"
+                                                          AutoPlay="False"
+                                                          RepeatCount="-1"
+                                                          HorizontalOptions="FillAndExpand"
+                                                          VerticalOptions="FillAndExpand" />
+                        </Border>
+
+                        <!-- 控制按钮 -->
+                        <Grid Margin="0,15,0,0" ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Button Grid.Column="0"
+                                    Text="播放"
+                                    Command="{Binding PlayCommand}"
+                                    BackgroundColor="#4CAF50"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    CornerRadius="8"
+                                    HeightRequest="45" />
+                            
+                            <Button Grid.Column="1"
+                                    Text="停止"
+                                    Command="{Binding StopCommand}"
+                                    BackgroundColor="#F44336"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    CornerRadius="8"
+                                    HeightRequest="45" />
+                        </Grid>
+
+                        <!-- 播放状态 -->
+                        <Label Text="{Binding IsPlaying, StringFormat='状态: {0}'}" 
+                               FontSize="14" 
+                               TextColor="#666" 
+                               Margin="0,10,0,0"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </Border>
+
+                <!-- 动画信息 -->
+                <Border BackgroundColor="White" 
+                        Padding="15" 
+                        Stroke="#E0E0E0" 
+                        StrokeThickness="1"
+                        IsVisible="{Binding AnimationInfo, Converter={StaticResource StringToBoolConverter}}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <StackLayout>
+                        <Label Text="动画信息" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#333" 
+                               Margin="0,0,0,10" />
+                        
+                        <Label Text="{Binding AnimationInfo}" 
+                               FontSize="14" 
+                               TextColor="#666" 
+                               LineHeight="1.5" />
+                    </StackLayout>
+                </Border>
+
+            </StackLayout>
+        </ScrollView>
+
+        <!-- 底部信息 -->
+        <Border Grid.Row="2" 
+                BackgroundColor="#6200EE" 
+                Padding="20,10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="15,15,0,0" />
+            </Border.StrokeShape>
+            <Label Text="基于 SkiaSharp 和 Skottie 构建" 
+                   FontSize="12" 
+                   TextColor="White" 
+                   HorizontalOptions="Center" />
+        </Border>
+    </Grid>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- 转换器定义 -->
+            <converters:BoolToColorConverter x:Key="BoolToSelectedColorConverter" 
+                                             TrueColor="#E3F2FD" 
+                                             FalseColor="Transparent" />
+            <converters:BoolToColorConverter x:Key="BoolToStrokeConverter" 
+                                             TrueColor="#2196F3" 
+                                             FalseColor="#E0E0E0" />
+            <converters:BoolToColorConverter x:Key="BoolToTextColorConverter" 
+                                             TrueColor="#1976D2" 
+                                             FalseColor="#666666" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+</ContentPage>
