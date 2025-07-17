@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Braincase/">
+    <Project Path="src/Verdure.Braincase.Api/Verdure.Braincase.Api.csproj" />
+    <Project Path="src/Verdure.Braincase/Verdure.Braincase.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/RuxRobotApp/">
+    <Project Path="src/RobotSDK.Android.Binding/RobotSDK.Android.Binding.csproj" />
+    <Project Path="src/RuxRobot/RuxRobot.csproj" />
+  </Folder>
+  <Project Path="src/ActressLibrary/ActressLibrary.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="src/LottieEmojisPlayer/LottieEmojisPlayer.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="src/Mp4EmojisPlayer/Mp4EmojisPlayer.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
