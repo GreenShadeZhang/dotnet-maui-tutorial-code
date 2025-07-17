@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:LottieEmojisPlayer.Controls"
              xmlns:viewmodels="clr-namespace:LottieEmojisPlayer.ViewModels"
+             xmlns:models="clr-namespace:LottieEmojisPlayer.Models"
              xmlns:converters="clr-namespace:LottieEmojisPlayer.Converters"
              x:DataType="viewmodels:MainPageViewModel"
              Title="Lottie 动画预览器"
@@ -54,7 +55,7 @@
                                Margin="0,0,0,10" />
                         
                         <CollectionView ItemsSource="{Binding LottieFiles}" 
-                                        SelectedItem="{Binding SelectedLottieFile}"
+                                        SelectedItem="{Binding SelectedLottieFile, Mode=TwoWay}"
                                         SelectionMode="Single"
                                         HeightRequest="120">
                             <CollectionView.ItemsLayout>
@@ -62,7 +63,7 @@
                                                    ItemSpacing="10" />
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate x:DataType="models:LottieFileItem">
                                     <Border BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToSelectedColorConverter}}"
                                             Stroke="{Binding IsSelected, Converter={StaticResource BoolToStrokeConverter}}"
                                             StrokeThickness="2"
@@ -112,8 +113,8 @@
                                                           FilePath="{Binding SelectedLottieFile.FilePath}"
                                                           AutoPlay="False"
                                                           RepeatCount="-1"
-                                                          HorizontalOptions="FillAndExpand"
-                                                          VerticalOptions="FillAndExpand" />
+                                                          HorizontalOptions="Fill"
+                                                          VerticalOptions="Fill" />
                         </Border>
 
                         <!-- 控制按钮 -->

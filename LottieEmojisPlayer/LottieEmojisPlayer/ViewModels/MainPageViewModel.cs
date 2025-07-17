@@ -38,15 +38,20 @@ namespace LottieEmojisPlayer.ViewModels
                 {
                     // 取消上一个选中项
                     if (_selectedLottieFile != null)
+                    {
                         _selectedLottieFile.IsSelected = false;
+                    }
 
                     _selectedLottieFile = value;
                     
                     // 设置新的选中项
                     if (_selectedLottieFile != null)
+                    {
                         _selectedLottieFile.IsSelected = true;
+                    }
 
                     OnPropertyChanged();
+                    UpdateAnimationInfo();
                     ((Command)PlayCommand).ChangeCanExecute();
                     ((Command)StopCommand).ChangeCanExecute();
                 }
@@ -209,6 +214,16 @@ namespace LottieEmojisPlayer.ViewModels
                               $"帧率: {info.Fps:F1} FPS\n" +
                               $"起始帧: {info.InPoint}\n" +
                               $"结束帧: {info.OutPoint}";
+            }
+        }
+
+        private void UpdateAnimationInfo()
+        {
+            if (SelectedLottieFile != null)
+            {
+                // 当选择新文件时，清除之前的动画信息
+                AnimationInfo = string.Empty;
+                IsPlaying = false;
             }
         }
         #endregion
