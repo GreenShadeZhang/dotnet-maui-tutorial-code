@@ -1,13 +1,10 @@
 using Android.Content;
-using AndroidX.Core.Content;
-using Java.Lang;
+using Com.Leitianpai.Robotsdk;
+using Com.Leitianpai.Robotsdk.Callback;
+using Com.Leitianpai.Robotsdk.Message;
 using MauiApp1.Services;
 using Microsoft.Extensions.Logging;
 using AndroidApp = Android.App.Application;
-using RobotSDK.Core;
-using RobotSDK.Messages;
-using RobotSDK.Callbacks;
-using RobotSDK.Commands;
 
 namespace MauiApp1.Platforms.Android.Services;
 
@@ -99,13 +96,13 @@ public class AndroidRobotControlService : IRobotControlService
 
             // 获取RobotService实例
             _robotService = RobotService.GetInstance(_context);
-            
+
             if (_robotService == null)
             {
                 _logger.LogError("无法获取RobotService实例");
                 return false;
             }
-            
+
             // 创建传感器回调
             _sensorCallback = new SensorCallbackImpl(
                 onTap: () => TapDetected?.Invoke(this, EventArgs.Empty),
@@ -291,7 +288,7 @@ public class AndroidRobotControlService : IRobotControlService
             // 使用正确的参数顺序！
             // 根据官方SDK文档：mMessage.set(number, speed, stepNum)
             var actionMessage = new ActionMessage();
-            
+
             // 正确的参数顺序：Set(actionNumber, speed, steps)
             _logger.LogInformation($"使用参数顺序: Set({actionNumber}, {speed}, {steps})");
             actionMessage.Set(actionNumber, speed, steps);
@@ -305,7 +302,7 @@ public class AndroidRobotControlService : IRobotControlService
                 3 or 4 => 1000,   // 其他转向动作
                 _ => 800           // 其他动作
             };
-            
+
             await Task.Delay(waitTime);
             _logger.LogInformation($"动作 {actionNumber} 执行完成");
         }
@@ -474,10 +471,10 @@ public class AndroidRobotControlService : IRobotControlService
         {
             // 先显示表情
             await ShowExpressionAsync(expression);
-            
+
             // 再播放语音
             await SpeakAsync(text);
-            
+
             // 延迟后停止表情
             await Task.Delay(500);
             await StopExpressionAsync();
@@ -620,24 +617,24 @@ public class AndroidRobotControlService : IRobotControlService
             }
 
             _logger.LogInformation("=== 开始调试测试前进动作 ===");
-            
+
             // 尝试不同的动作编号
             int[] testActions = { 1, 2, 3, 4, 5, 6, 63, 64, 65, 66 };
-            
+
             foreach (int actionNumber in testActions)
             {
                 _logger.LogInformation($"测试动作编号: {actionNumber}");
-                
+
                 var actionMessage = new ActionMessage();
                 actionMessage.Set(actionNumber, 3, 1);  // 使用正确的参数顺序和默认值
                 _robotService.RobotActionCommand(actionMessage);
-                
+
                 // 等待观察效果
                 await Task.Delay(3000);
-                
+
                 _logger.LogInformation($"动作编号 {actionNumber} 测试完成，请观察机器人是否有反应");
             }
-            
+
             _logger.LogInformation("=== 调试测试完成 ===");
         }
         catch (System.Exception ex)
@@ -666,38 +663,38 @@ public class AndroidRobotControlService : IRobotControlService
             }
 
             _logger.LogInformation("=== 开始测试参数组合 ===");
-            
+
             // 使用动作编号63，尝试不同的参数组合
             int actionNumber = 63;
-            
+
             // 组合1: Set(actionNumber, speed, steps) - 正确的官方文档顺序
             _logger.LogInformation($"测试组合1: Set({actionNumber}, 3, 1)");
             var msg1 = new ActionMessage();
             msg1.Set(actionNumber, 3, 1);
             _robotService.RobotActionCommand(msg1);
             await Task.Delay(3000);
-            
+
             // 组合2: Set(speed, steps, actionNumber) - 错误的参数顺序
             _logger.LogInformation($"测试组合2: Set(3, 1, {actionNumber})");
             var msg2 = new ActionMessage();
             msg2.Set(3, 1, actionNumber);
             _robotService.RobotActionCommand(msg2);
             await Task.Delay(3000);
-            
+
             // 组合3: Set(steps, actionNumber, speed) - 错误的参数顺序
             _logger.LogInformation($"测试组合3: Set(1, {actionNumber}, 3)");
             var msg3 = new ActionMessage();
             msg3.Set(1, actionNumber, 3);
             _robotService.RobotActionCommand(msg3);
             await Task.Delay(3000);
-            
+
             // 组合4: 使用更高的速度值
             _logger.LogInformation($"测试组合4: Set({actionNumber}, 6, 2)");
             var msg4 = new ActionMessage();
             msg4.Set(actionNumber, 6, 2);
             _robotService.RobotActionCommand(msg4);
             await Task.Delay(3000);
-            
+
             _logger.LogInformation("=== 参数组合测试完成 ===");
         }
         catch (System.Exception ex)
