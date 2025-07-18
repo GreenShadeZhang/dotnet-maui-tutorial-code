@@ -16,9 +16,21 @@ namespace ActressLibrary.Helpers
         public static ImageSource CreateImageSource(byte[] imageBytes)
         {
             if (imageBytes == null || imageBytes.Length == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("ImageHelper: 图片字节数组为空");
                 return null;
+            }
 
-            return ImageSource.FromStream(() => new MemoryStream(imageBytes));
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"ImageHelper: 创建ImageSource，字节数组长度: {imageBytes.Length}");
+                return ImageSource.FromStream(() => new MemoryStream(imageBytes));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ImageHelper: 创建ImageSource失败: {ex.Message}");
+                return null;
+            }
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="ActressLibrary.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -8,59 +8,136 @@
     xmlns:viewmodels="clr-namespace:ActressLibrary.ViewModels"
     xmlns:res="clr-namespace:ActressLibrary.Resources.Strings"
     x:DataType="viewmodels:MainViewModel"
-    ios:Page.UseSafeArea="True">
-    <Grid
-        BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
-                                          Dark={StaticResource DarkBackground}}"
-        ColumnDefinitions="*,*"
-        ColumnSpacing="5"
-        RowDefinitions="*,Auto"
-        RowSpacing="0">
-        <RefreshView
-            Grid.ColumnSpan="2"
-            Command="{Binding LoadActorsCommand}"
-            IsRefreshing="{Binding IsRefreshing}">
-            <CollectionView
-                BackgroundColor="Transparent"
-                ItemsSource="{Binding Infos}"
-                SelectionMode="None">
+    ios:Page.UseSafeArea="True"
+    Title="演员库">
+    
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 现代化标题栏 -->
+        <Border Grid.Row="0" 
+                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                Padding="20,15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0" />
+            </Border.StrokeShape>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Text="演员库" 
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+                
+                <Label Grid.Column="1" 
+                       Text="{Binding Infos.Count, StringFormat='共 {0} 项'}"
+                       FontSize="14"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <!-- 主要内容区域 -->
+        <RefreshView Grid.Row="1"
+                     Command="{Binding LoadActorsCommand}"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     RefreshColor="{StaticResource Primary}">
+            
+            <CollectionView ItemsSource="{Binding Infos}"
+                            SelectionMode="None"
+                            BackgroundColor="Transparent">
+                
+                <!-- 空状态显示 -->
                 <CollectionView.EmptyView>
-                    <StackLayout Padding="100">
-                        <Image
-                            Source="nodata.png"/>
-                    </StackLayout>
+                    <Grid Padding="40">
+                        <StackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="20">
+                            <Image Source="nodata.png" 
+                                   HeightRequest="120"
+                                   WidthRequest="120"
+                                   Aspect="AspectFit" />
+                            <Label Text="暂无数据" 
+                                   FontSize="18"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray200}}"
+                                   HorizontalOptions="Center" />
+                            <Label Text="点击下方按钮加载数据" 
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"
+                                   HorizontalOptions="Center" />
+                        </StackLayout>
+                    </Grid>
                 </CollectionView.EmptyView>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
+
+                <!-- 现代化列表项模板 -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:PersonalInfoDto">
-                        <Grid Padding="10">
-                            <Border HeightRequest="125" Style="{StaticResource CardView}">
+                        <Grid Padding="16,8">
+                            <Border BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Gray900}}"
+                                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}"
+                                    StrokeThickness="1"
+                                    Padding="0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12" />
+                                </Border.StrokeShape>
+                                
+                                <!-- 卡片阴影效果 -->
+                                <Border.Shadow>
+                                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}"
+                                            Opacity="0.3"
+                                            Radius="8"
+                                            Offset="0,2" />
+                                </Border.Shadow>
+                                
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                 </Border.GestureRecognizers>
-                                <Grid Padding="0" ColumnDefinitions="125,*">
-                                    <Image
-                                        Aspect="AspectFill"
-                                        HeightRequest="125"
-                                        Source="{Binding ImageSource}"
-                                        WidthRequest="125" />
-                                    <StackLayout
-                                        Grid.Column="1"
-                                        Padding="10"
-                                        VerticalOptions="Center">
-                                        <Label
-                                            Margin="4"
-                                            Style="{StaticResource LargeLabel}"
-                                            Text="{Binding Name}" />
-                                        <Label
-                                            Margin="4"
-                                            LineBreakMode="TailTruncation"
-                                            LineHeight="2"
-                                            MaxLines="2"
-                                            Style="{StaticResource MediumLabel}"
-                                            Text="{Binding Desc}" />
+                                
+                                <Grid Padding="16" ColumnDefinitions="80,*" ColumnSpacing="16">
+                                    <!-- 头像区域 -->
+                                    <Border Grid.Column="0" 
+                                            BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray800}}"
+                                            HeightRequest="80"
+                                            WidthRequest="80">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        
+                                        <Image Source="{Binding ImageSource}"
+                                               Aspect="AspectFill"
+                                               HeightRequest="80"
+                                               WidthRequest="80" />
+                                    </Border>
+                                    
+                                    <!-- 信息区域 -->
+                                    <StackLayout Grid.Column="1" 
+                                                 VerticalOptions="Center"
+                                                 Spacing="4">
+                                        <Label Text="{Binding Name}"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                                               LineBreakMode="TailTruncation" />
+                                        
+                                        <Label Text="{Binding Desc}"
+                                               FontSize="14"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2" />
+                                        
+                                        <Label Text="{Binding Hobbies}"
+                                               FontSize="12"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray500}}"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="1" />
                                     </StackLayout>
                                 </Grid>
                             </Border>
@@ -70,20 +147,44 @@
             </CollectionView>
         </RefreshView>
 
-        <Button
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Margin="8"
-            Command="{Binding LoadActorsCommand}"
-            IsEnabled="{Binding IsNotBusy}"
-            Style="{StaticResource ButtonOutline}"
-            Text="{x:Static res:AppResource.Load_Actors}" />
+        <!-- 现代化底部操作栏 -->
+        <Grid Grid.Row="2" 
+              BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Gray900}}"
+              Padding="16,12">
+            <Grid.Shadow>
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}"
+                        Opacity="0.3"
+                        Radius="8"
+                        Offset="0,-2" />
+            </Grid.Shadow>
+            
+            <Button Text="{x:Static res:AppResource.Load_Actors}"
+                    Command="{Binding LoadActorsCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="8"
+                    HeightRequest="48" />
+        </Grid>
 
-
-        <ActivityIndicator
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
-            IsRunning="{Binding IsBusy}"
-            IsVisible="{Binding IsBusy}"/>
+        <!-- 现代化加载指示器 -->
+        <Grid Grid.RowSpan="3"
+              IsVisible="{Binding IsBusy}"
+              BackgroundColor="{AppThemeBinding Light=#80FFFFFF, Dark=#80000000}">
+            <StackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="16">
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   Color="{StaticResource Primary}"
+                                   WidthRequest="50"
+                                   HeightRequest="50" />
+                <Label Text="正在加载数据..."
+                       FontSize="16"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray700}, Dark={StaticResource Gray300}}"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
     </Grid>
 </ContentPage>

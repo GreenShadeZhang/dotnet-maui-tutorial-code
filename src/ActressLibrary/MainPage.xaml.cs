@@ -51,6 +51,32 @@ public partial class MainPage : ContentPage
 
             File.Create(firstPath);
         }
+
+        // 添加测试数据验证UI绑定
+        await Task.Delay(500); // 确保UI完全加载
+        
+        System.Diagnostics.Debug.WriteLine($"MainPage OnAppearing: ViewModel is null? {ViewModel == null}");
+        System.Diagnostics.Debug.WriteLine($"MainPage OnAppearing: BindingContext is null? {BindingContext == null}");
+        System.Diagnostics.Debug.WriteLine($"MainPage OnAppearing: Infos count: {ViewModel?.Infos?.Count ?? -1}");
+        
+        // 为了测试UI绑定，添加一些测试数据
+        if (ViewModel != null && ViewModel.Infos.Count == 0)
+        {
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                // 添加测试数据
+                var testItem = new PersonalInfoDto
+                {
+                    Name = "测试用户",
+                    Desc = "这是一个测试用户，用于验证UI绑定是否正常工作",
+                    Hobbies = "测试爱好",
+                    Tags = new List<string> { "测试", "UI" }
+                };
+                
+                ViewModel.Infos.Add(testItem);
+                System.Diagnostics.Debug.WriteLine($"添加了测试数据，当前Infos数量: {ViewModel.Infos.Count}");
+            });
+        }
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

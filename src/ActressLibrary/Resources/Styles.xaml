@@ -7,6 +7,7 @@
 
 
     <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="PrimaryDark">#2B0B98</Color>
     <Color x:Key="Light">#DFD8F7</Color>
     <Color x:Key="Dark">#2B0B98</Color>
     <Color x:Key="White">White</Color>
@@ -14,6 +15,17 @@
     <Color x:Key="LightGray">#E5E5E1</Color>
     <Color x:Key="MidGray">#969696</Color>
     <Color x:Key="DarkGray">#505050</Color>
+    
+    <!-- 新增的颜色 -->
+    <Color x:Key="Gray100">#F5F5F5</Color>
+    <Color x:Key="Gray200">#E0E0E0</Color>
+    <Color x:Key="Gray300">#BDBDBD</Color>
+    <Color x:Key="Gray400">#9E9E9E</Color>
+    <Color x:Key="Gray500">#757575</Color>
+    <Color x:Key="Gray600">#616161</Color>
+    <Color x:Key="Gray700">#424242</Color>
+    <Color x:Key="Gray800">#303030</Color>
+    <Color x:Key="Gray900">#212121</Color>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="LightBrush" Color="{StaticResource Light}" />
     <SolidColorBrush x:Key="DarkBrush" Color="{StaticResource Dark}" />
