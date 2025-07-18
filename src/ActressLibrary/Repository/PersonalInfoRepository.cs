@@ -72,13 +72,12 @@ namespace ActressLibrary.Infrastructure.Repository
 
             LiteFileInfo<string> file = fs.FindById($"$/Data/{person.AvatarName}");
 
-            Stream stream = new MemoryStream();
-
-            fs.Download(file.Id, stream);
-
-            stream.Seek(0, SeekOrigin.Begin);
-
-            person.AvatarStream = stream;
+            using (var stream = new MemoryStream())
+            {
+                fs.Download(file.Id, stream);
+                // 直接设置字节数组，更高效
+                person.AvatarBytes = stream.ToArray();
+            }
 
             return Task.FromResult(person);
         }
@@ -105,13 +104,12 @@ namespace ActressLibrary.Infrastructure.Repository
                     {
                         LiteFileInfo<string> file = fs.FindById($"$/Data/{item.AvatarName}");
 
-                        var stream = new MemoryStream();
-
-                        fs.Download(file.Id, stream);
-
-                        stream.Seek(0, SeekOrigin.Begin);
-
-                        item.AvatarStream = stream;
+                        using (var stream = new MemoryStream())
+                        {
+                            fs.Download(file.Id, stream);
+                            // 直接设置字节数组，更高效
+                            item.AvatarBytes = stream.ToArray();
+                        }
                     }
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using ActressLibrary.Interfaces;
 using ActressLibrary.Models;
+using ActressLibrary.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,13 @@ namespace ActressLibrary.ViewModels
                     Tags = ret.Tags
                 };
 
-                temp.ImageSource = ImageSource.FromStream(() => ret.AvatarStream);
+                // 使用字节数组而不是流，更优雅更高效
+                var avatarBytes = ret.GetAvatarBytes();
+                if (avatarBytes != null && avatarBytes.Length > 0)
+                {
+                    temp.AvatarBitmap = avatarBytes;
+                    temp.ImageSource = ImageHelper.CreateImageSource(avatarBytes);
+                }
 
                 InfoDto = temp;
             }

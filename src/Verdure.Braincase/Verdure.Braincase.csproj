@@ -82,6 +82,6 @@
 	  <Folder Include="Services\ClockView\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.Maui.Controls" Version="9.0.81" />
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="9.0.90" />
 	</ItemGroup>
 </Project>

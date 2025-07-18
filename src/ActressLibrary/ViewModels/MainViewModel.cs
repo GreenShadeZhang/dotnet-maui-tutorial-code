@@ -1,5 +1,6 @@
 ﻿using ActressLibrary.Interfaces;
 using ActressLibrary.Models;
+using ActressLibrary.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -44,11 +45,17 @@ namespace ActressLibrary.ViewModels
                             Hobbies = item.Hobbies,
                             Tags = item.Tags
                         };
-                        temp.ImageSource = ImageSource.FromStream(() => item.AvatarStream);
+
+                        // 使用字节数组而不是流，更优雅更高效
+                        var avatarBytes = item.GetAvatarBytes();
+                        if (avatarBytes != null && avatarBytes.Length > 0)
+                        {
+                            temp.AvatarBitmap = avatarBytes;
+                            temp.ImageSource = ImageHelper.CreateImageSource(avatarBytes);
+                        }
 
                         list.Add(temp);
                     }
-
                 }
 
                 if (Infos.Count != 0)
@@ -61,7 +68,7 @@ namespace ActressLibrary.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"Unable to get actors: {ex.Message}");
-                await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
             }
             finally
             {
