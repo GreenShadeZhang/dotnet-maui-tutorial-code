@@ -8,6 +8,12 @@
 
 [dotnet-podcasts](https://github.com/microsoft/dotnet-podcasts)
 
+## RuxRobot
+
+乐天派机器人的硬件操作SDK的DEMO，用来控制机器人的动作
+![maui-le](/Images/letianpai.png)
+
+
  ## ActressLibrary
  
  一个列表展示的项目，主要测试maui使用litedb作为本地数据库展示一些数据。直接使用了 dotnet-maui-workshop的模版，效果如下：
