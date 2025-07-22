@@ -14,6 +14,11 @@
 ![maui-le](/Images/letianpai.png)
 
 
+
+https://github.com/user-attachments/assets/90188217-c282-43c4-83c8-fe7d5c28a4f8
+
+
+
  ## ActressLibrary
  
  一个列表展示的项目，主要测试maui使用litedb作为本地数据库展示一些数据。直接使用了 dotnet-maui-workshop的模版，效果如下：
